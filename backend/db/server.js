@@ -15,3 +15,5 @@ pool.connect((err) => {
     console.log("Connected to db");
   }
 });
+
+export default pool;
