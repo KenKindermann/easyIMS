@@ -15,6 +15,7 @@ export const getCustomerByValue = async (req, res) => {
   const values = Object.values(querys);
 
   let query = "SELECT * FROM customers WHERE ";
+
   keys.forEach((key, index) => {
     query += `${key} = $${index + 1}`;
     if (index < keys.length - 1) {
@@ -30,6 +31,16 @@ export const getCustomerByValue = async (req, res) => {
     } else {
       res.status(404).json({ message: "Not found" });
     }
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+
+export const sortCustomersByValue = async (req, res) => {
+  const { key } = req.query;
+  try {
+    const response = await pool.query(`SELECT * FROM customers ORDER BY ${key}`);
+    res.json(response.rows);
   } catch (error) {
     res.status(500).json({ message: error });
   }
