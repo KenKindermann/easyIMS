@@ -10,11 +10,20 @@ export const getAllCustomers = async (req, res) => {
 };
 
 export const getCustomerByValue = async (req, res) => {
-  const { key } = req.params;
-  const { value } = req.query;
+  const querys = req.query;
+  const keys = Object.keys(querys);
+  const values = Object.values(querys);
+
+  let query = "SELECT * FROM customers WHERE ";
+  keys.forEach((key, index) => {
+    query += `${key} = $${index + 1}`;
+    if (index < keys.length - 1) {
+      query += " AND ";
+    }
+  });
 
   try {
-    const response = await pool.query(`SELECT * FROM customers WHERE ${key} = $1`, [value]);
+    const response = await pool.query(query, values);
 
     if (response.rows.length > 0) {
       res.json(response.rows);
