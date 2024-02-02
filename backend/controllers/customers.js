@@ -5,6 +5,6 @@ export const getAllCustomers = async (req, res) => {
     const response = await pool.query("SELECT * FROM customers");
     res.json(response.rows);
   } catch (error) {
-    console.error(error);
+    res.status(500).json({ message: error });
   }
 };
