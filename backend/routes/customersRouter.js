@@ -7,10 +7,11 @@ import {
   getCustomerByValue,
   sortCustomersByValue,
 } from "../controllers/customers.js";
+import { getAll } from "../controllers/general.js";
 
 const customersRouter = Router();
 
-customersRouter.route("/").get(getAllCustomers).post(addNewCustomer);
+customersRouter.route("/").get(getAll("customers")).post(addNewCustomer);
 customersRouter.route("/search").get(getCustomerByValue);
 customersRouter.route("/sort/:key").get(sortCustomersByValue);
 customersRouter.route("/:id").put(editCustomer).delete(deleteCustomer);
