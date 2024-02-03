@@ -1,3 +1,5 @@
+import pool from "../db/server.js";
+
 export const getAll = async (table, req, res) => {
   try {
     const response = await pool.query(`SELECT * FROM ${table}`);
