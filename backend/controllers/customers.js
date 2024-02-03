@@ -37,9 +37,19 @@ export const getCustomerByValue = async (req, res) => {
 };
 
 export const sortCustomersByValue = async (req, res) => {
-  const { key } = req.query;
+  const { key } = req.params;
   try {
     const response = await pool.query(`SELECT * FROM customers ORDER BY ${key}`);
+    res.json(response.rows);
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+
+export const deleteCustomer = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await pool.query("DELETE FROM customers WHERE id = $1 RETURNING *", [id]);
     res.json(response.rows);
   } catch (error) {
     res.status(500).json({ message: error });
