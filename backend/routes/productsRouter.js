@@ -1,12 +1,16 @@
 import { Router } from "express";
-import { getAll } from "../controllers/general.js";
+import { getAll, getByValue, sortByValue } from "../controllers/general.js";
 import { addNewProduct } from "../controllers/products.js";
 
-const customersRouter = Router();
+const productsRouter = Router();
 
-customersRouter
+productsRouter
   .route("/")
   .get((req, res) => getAll("products", req, res))
   .post(addNewProduct);
 
-export default customersRouter;
+productsRouter.route("/search").get((req, res) => getByValue("products", req, res));
+
+productsRouter.route("/sort/:key").get((req, res) => sortByValue("products", req, res));
+
+export default productsRouter;
