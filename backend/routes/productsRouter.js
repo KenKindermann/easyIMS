@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getAll, getByValue, sortByValue } from "../controllers/general.js";
-import { addNewProduct } from "../controllers/products.js";
+import { addNewProduct, editProduct } from "../controllers/products.js";
 
 const productsRouter = Router();
 
@@ -12,5 +12,10 @@ productsRouter
 productsRouter.route("/search").get((req, res) => getByValue("products", req, res));
 
 productsRouter.route("/sort/:key").get((req, res) => sortByValue("products", req, res));
+
+productsRouter
+  .route("/:id")
+  .put(editProduct)
+  .delete((req, res) => deleteById("products", req, res));
 
 export default productsRouter;
