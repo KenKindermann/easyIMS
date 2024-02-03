@@ -55,3 +55,16 @@ export const deleteCustomer = async (req, res) => {
     res.status(500).json({ message: error });
   }
 };
+
+export const addNewCustomer = async (req, res) => {
+  const { firstname, lastname, street, zipcode, city, shippingstreet, shippingzipcode, shippingcity } = req.body;
+  try {
+    const response = await pool.query(
+      "INSERT INTO customers (firstname, lastname, street, zipcode, city, shippingstreet, shippingzipcode, shippingcity) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+      [firstname, lastname, street, zipcode, city, shippingstreet, shippingzipcode, shippingcity]
+    );
+    res.json(response.rows);
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
