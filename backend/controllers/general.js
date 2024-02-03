@@ -36,10 +36,10 @@ export const getByValue = async (table, req, res) => {
   }
 };
 
-export const deleteByValue = async (table, req, res) => {
-  const { key, value } = req.params;
+export const deleteById = async (table, req, res) => {
+  const { id } = req.params;
   try {
-    const response = await pool.query(`DELETE FROM ${table} WHERE ${key} = $1 RETURNING *`, [value]);
+    const response = await pool.query(`DELETE FROM ${table} WHERE id = $1 RETURNING *`, [id]);
     if (response.rows.length > 0) {
       res.json(response.rows[0]);
     } else {
