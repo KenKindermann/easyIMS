@@ -31,6 +31,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 1.125rem;
   color: var(--secondary);
+  background-color: rgb(233, 233, 233);
 }
 
 li {
@@ -42,6 +43,6 @@ a {
 }
 
 section {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
