@@ -22,3 +22,38 @@ export const customers = {
     "shippingcity",
   ],
 };
+
+export const products = {
+  labels: [
+    "Product No",
+    "Ean",
+    "Producer",
+    "Details",
+    "Net Purchase Price",
+    "Gross Retail Price",
+    "Gross Purchase Price",
+    "Tax",
+    "Margin",
+    "Upe",
+    "Stock",
+    "Product group",
+    "Distributor",
+    "Mark",
+  ],
+  keys: [
+    "id",
+    "ean",
+    "producer",
+    "details",
+    "purchase_price_without_tax",
+    "retail_price_without_tax",
+    "retail_price_with_tax",
+    "tax",
+    "margin",
+    "upe",
+    "stock",
+    "product_group",
+    "distributor",
+    "mark",
+  ],
+};
