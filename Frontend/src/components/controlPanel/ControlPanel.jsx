@@ -10,6 +10,10 @@ const ControlPanel = () => {
   return (
     <section className="control-panel">
       <Button label={"Add"} imgSrc={addIcon} />
+      <Button label={"Edit"} imgSrc={editIcon} />
+      <Button label={"Delete"} imgSrc={deleteIcon} />
+      <Button label={"Search"} imgSrc={searchIcon} />
+      <Button label={"Sort"} imgSrc={sortIcon} />
     </section>
   );
 };
