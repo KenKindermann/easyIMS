@@ -6,11 +6,9 @@ const useFetch = () => {
   const [error, setError] = useState(null);
 
   const fetchAll = async (url) => {
-    console.log("useFetch:");
     try {
       const response = await axios.get(url);
-
-      setData(response);
+      setData(response.data);
     } catch (error) {
       setError(error);
     }
