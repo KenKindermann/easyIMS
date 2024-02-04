@@ -1,6 +1,19 @@
 import "../../style/table.css";
+import useFetch from "../../hooks/useFetch";
+import { useEffect } from "react";
 
-const Table = () => {
+const Table = ({ table }) => {
+  const { data, error, fetchAll } = useFetch();
+  const url = `http://localhost:8000/customers`;
+
+  useEffect(() => {
+    fetchAll(url);
+  }, []);
+
+  useEffect(() => {
+    console.log(data, error);
+  }, [data, error]);
+
   return (
     <section className="table">
       <table>
