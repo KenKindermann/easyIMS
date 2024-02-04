@@ -16,6 +16,10 @@
   font-weight: 700; /* Bold */
 }
 
+:root {
+  --primary: #3f51b5;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -24,6 +28,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  font-size: 1.125rem;
 }
 
 li {

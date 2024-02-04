@@ -1,7 +1,10 @@
+import "../../style/navbar.css";
+
 const Navbar = () => {
   return (
     <nav>
-      <h2>easyIWS</h2>
+      <p>easyIWS</p>
+      <p>Ken Kindermann</p>
     </nav>
   );
 };
