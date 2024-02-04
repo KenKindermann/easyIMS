@@ -1,8 +1,8 @@
 import "../../style/sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ showSidebar }) => {
   return (
-    <div className="sidebar">
+    <div className={showSidebar ? "sidebar show" : "sidebar"}>
       <p>easyIWS</p>
       <ul>
         <li>Documents</li>

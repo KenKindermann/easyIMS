@@ -21,10 +21,11 @@ nav {
 
 .toggle-bar {
   width: 20px;
-  height: 19px;
+  height: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .toggle-bar span {
