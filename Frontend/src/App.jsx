@@ -1,7 +1,14 @@
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <Routes>
+        <Route path="/customers" />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
