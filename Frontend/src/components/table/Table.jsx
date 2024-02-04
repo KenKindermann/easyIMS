@@ -1,20 +1,21 @@
 import "../../style/table.css";
 import useFetch from "../../hooks/useFetch";
 import { useEffect, useState } from "react";
-import { customers } from "../../utils/tableFormatter.js";
+import { customers, products } from "../../utils/tableFormatter.js";
 
 const Table = ({ table }) => {
   const { data, error, fetchAll } = useFetch();
   const [currentTable, setCurrentTable] = useState(table);
-  const url = `http://localhost:8000/customers`;
+  const url = `http://localhost:8000/${table}`;
 
   useEffect(() => {
     switch (table) {
       case "customers":
         setCurrentTable(customers);
-
         break;
-
+      case "products":
+        setCurrentTable(products);
+        break;
       default:
         break;
     }
