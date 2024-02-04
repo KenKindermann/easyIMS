@@ -1,10 +1,12 @@
 import express from "express";
+import cors from "cors";
 import customerRouter from "./routes/customersRouter.js";
 import productsRouter from "./routes/productsRouter.js";
 
 const app = express();
 const PORT = 8000;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
