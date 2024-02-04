@@ -1,0 +1,56 @@
+table {
+  background-color: white;
+  border-radius: 2px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+  margin-top: 1rem;
+  border-collapse: collapse;
+}
+
+table thead tr th {
+  white-space: nowrap;
+  padding: 1rem;
+}
+
+thead tr {
+  font-size: 0.9rem;
+}
+
+th {
+  padding: 0.5rem 0.5rem;
+  font-weight: 500;
+}
+
+tr th:first-child {
+  width: 50px;
+}
+tr td:first-child {
+  width: 50px;
+}
+
+td {
+  padding: 1rem !important;
+}
+
+td,
+th {
+  width: 150px;
+  text-align: start;
+}
+
+tbody tr:hover {
+  background-color: rgb(228, 228, 228);
+}
+
+tbody tr:nth-child(odd):hover {
+  background-color: rgb(228, 228, 228);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: rgb(243, 243, 243);
+}
+
+tbody tr td {
+  font-weight: normal;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.5rem;
+}
