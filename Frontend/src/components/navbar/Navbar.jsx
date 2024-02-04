@@ -1,22 +1,29 @@
+import { useState } from "react";
 import "../../style/navbar.css";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
+
   return (
-    <nav>
-      <div className="navbar">
-        <div className="toggle-bar-and-page">
-          <div className="toggle-bar">
-            <span></span>
-            <span></span>
-            <span></span>
+    <>
+      <nav>
+        <div className="navbar">
+          <div className="toggle-bar-and-page">
+            <div className="toggle-bar" onClick={() => setShowSidebar(true)}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <p>Customers</p>
           </div>
-          <p>Customers</p>
+          <div>
+            <p>Ken Kindermann</p>
+          </div>
         </div>
-        <div>
-          <p>Ken Kindermann</p>
-        </div>
-      </div>
-    </nav>
+      </nav>
+      <Sidebar />
+    </>
   );
 };
 

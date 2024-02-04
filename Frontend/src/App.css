@@ -18,6 +18,7 @@
 
 :root {
   --primary: #3f51b5;
+  --secondary: rgb(88, 88, 88);
 }
 
 * {
@@ -29,6 +30,7 @@
 body {
   font-family: "Roboto", sans-serif;
   font-size: 1.125rem;
+  color: var(--secondary);
 }
 
 li {
