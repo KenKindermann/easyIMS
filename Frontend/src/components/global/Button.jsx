@@ -1,7 +1,9 @@
+import "../../style/button.css";
+
 const Button = ({ imgSrc, label }) => {
   return (
     <button>
-      <img src={imgSrc} alt={label + "icon"} />
+      <img src={imgSrc} alt={label + "icon"} /> {label}
     </button>
   );
 };
