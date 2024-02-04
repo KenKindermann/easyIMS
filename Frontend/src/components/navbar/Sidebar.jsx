@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import "../../style/sidebar.css";
+import { OverlayContext } from "../../provider/OverlayContext";
 
 const Sidebar = ({ showSidebar }) => {
+  const { darkOverlay } = useContext(OverlayContext);
   return (
-    <div className={showSidebar ? "sidebar show" : "sidebar"}>
+    <div className={showSidebar && darkOverlay ? "sidebar show" : "sidebar"}>
       <p>easyIWS</p>
       <ul>
         <li>Documents</li>
