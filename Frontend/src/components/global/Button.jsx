@@ -1,8 +1,11 @@
 import "../../style/button.css";
+import usePopup from "../../hooks/usePopup";
 
 const Button = ({ imgSrc, label }) => {
+  const { openPopup } = usePopup();
+
   return (
-    <button>
+    <button onClick={() => openPopup(label)}>
       <img src={imgSrc} alt={label + "icon"} /> {label}
     </button>
   );
