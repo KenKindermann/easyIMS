@@ -19,15 +19,11 @@ const Table = ({ table }) => {
       default:
         break;
     }
-  }, []);
+  }, [table]);
 
   useEffect(() => {
     fetchAll(url);
-  }, []);
-
-  useEffect(() => {
-    console.log(data, error);
-  }, [data, error]);
+  }, [url]);
 
   return (
     <section className="table">
