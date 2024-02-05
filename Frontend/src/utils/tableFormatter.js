@@ -40,7 +40,6 @@ export const products = {
     "Stock",
     "Product group",
     "Distributor",
-    "Mark",
   ],
   keys: [
     "id",
@@ -56,6 +55,5 @@ export const products = {
     "stock",
     "product_group",
     "distributor",
-    "mark",
   ],
 };
