@@ -1,4 +1,5 @@
 export const customers = {
+  title: "Customers",
   labels: [
     "Customer No",
     "Fist name",
@@ -24,6 +25,7 @@ export const customers = {
 };
 
 export const products = {
+  title: "Products",
   labels: [
     "Product No",
     "Ean",
