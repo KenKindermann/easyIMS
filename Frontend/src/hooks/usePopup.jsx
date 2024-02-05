@@ -1,17 +1,17 @@
 import { useContext } from "react";
-import { MyContext } from "../provider/changeContent";
+import { PopupContext } from "../provider/PopupContext";
 
 const usePopup = () => {
-  const { setShowPopup, setDarkBackground } = useContext(MyContext);
+  const { setShowPopup, setDarkOverlay } = useContext(PopupContext);
 
-  const openPopup = () => {
-    setShowPopup(false);
-    setDarkBackground(true);
+  const openPopup = (action) => {
+    setShowPopup(action);
+    setDarkOverlay(true);
   };
 
   const closePopup = () => {
     setShowPopup(false);
-    setDarkBackground(false);
+    setDarkOverlay(false);
   };
 
   return { openPopup, closePopup };
