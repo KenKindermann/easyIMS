@@ -4,7 +4,7 @@ import Navbar from "./components/navigation/Navbar";
 import DarkOverlay from "./components/global/DarkOverlay";
 import ControlPanel from "./components/controlPanel/ControlPanel";
 import Table from "./components/table/Table";
-import { useState } from "react";
+import Popup from "./components/global/Popup";
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
           }
         />
       </Routes>
+      <Popup />
       <DarkOverlay />
     </>
   );
