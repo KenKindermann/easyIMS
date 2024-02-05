@@ -1,11 +1,13 @@
 import "../../style/table.css";
 import useFetch from "../../hooks/useFetch";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { customers, products } from "../../utils/tableFormatter.js";
+import { TableContext } from "../../provider/TableContext.jsx";
 
 const Table = ({ table }) => {
   const { data, error, fetchAll } = useFetch();
-  const [currentTable, setCurrentTable] = useState(table);
+  const { currentTable, setCurrentTable } = useContext(TableContext);
+
   const url = `http://localhost:8000/${table}`;
 
   useEffect(() => {
