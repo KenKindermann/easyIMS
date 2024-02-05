@@ -6,7 +6,7 @@ import { TableContext } from "../../provider/TableContext.jsx";
 
 const Table = ({ table }) => {
   const { data, error, fetchAll } = useFetch();
-  const { currentTable, setCurrentTable } = useContext(TableContext);
+  const { currentTable, setCurrentTable, selectedId, setSelectedId } = useContext(TableContext);
 
   const url = `http://localhost:8000/${table}`;
 
@@ -27,6 +27,15 @@ const Table = ({ table }) => {
     fetchAll(url);
   }, [url]);
 
+  const handleCheckboxChange = (e, itemId) => {
+    if (e.target.checked) {
+      setSelectedId([...selectedId, itemId]);
+    } else {
+      const newSelectedIds = selectedId.filter((id) => id !== itemId);
+      setSelectedId(newSelectedIds);
+    }
+  };
+
   return (
     <section className="table">
       {currentTable && data ? (
@@ -44,7 +53,7 @@ const Table = ({ table }) => {
             {data?.map((item) => (
               <tr>
                 <td>
-                  <input type="checkbox" />
+                  <input type="checkbox" id={item.id} onChange={(e) => handleCheckboxChange(e, item.id)} />
                 </td>
                 {currentTable.keys.map((key) => (
                   <td>{item[key]}</td>
