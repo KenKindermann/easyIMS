@@ -19,6 +19,7 @@
 :root {
   --primary: #3f51b5;
   --secondary: rgb(88, 88, 88);
+  --hover: #334294;
 }
 
 * {
@@ -43,6 +44,14 @@ a {
 }
 
 section {
-  max-width: 1400px;
-  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: var(--hover);
+  }
 }
