@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { OverlayContext } from "../../provider/OverlayContext";
+import { PopupContext } from "../../provider/PopupContext";
 import "../../style/overlay.css";
 
 const DarkOverlay = () => {
-  const { darkOverlay, setDarkOverlay } = useContext(OverlayContext);
+  const { darkOverlay, setDarkOverlay } = useContext(PopupContext);
   return <div className={darkOverlay ? "dark-overlay" : null} onClick={() => setDarkOverlay(false)}></div>;
 };
 

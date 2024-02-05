@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import "../../style/sidebar.css";
-import { OverlayContext } from "../../provider/OverlayContext";
+import { PopupContext } from "../../provider/PopupContext";
 import { useNavigate } from "react-router-dom";
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
-  const { darkOverlay, setDarkOverlay } = useContext(OverlayContext);
+  const { darkOverlay, setDarkOverlay } = useContext(PopupContext);
   const navigate = useNavigate();
 
   const pages = [

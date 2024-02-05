@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
 import "../../style/navbar.css";
 import Sidebar from "./Sidebar";
-import { OverlayContext } from "../../provider/OverlayContext";
+import { PopupContext } from "../../provider/PopupContext";
 import { TableContext } from "../../provider/TableContext";
 
 const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
-  const { setDarkOverlay } = useContext(OverlayContext);
+  const { setDarkOverlay } = useContext(PopupContext);
   const { currentTable } = useContext(TableContext);
 
   return (
