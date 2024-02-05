@@ -5,6 +5,7 @@ import { PopupContext } from "../../provider/PopupContext";
 import { TableContext } from "../../provider/TableContext";
 import AddPopup from "../popups/AddPopup";
 import EditPopup from "../popups/EditPopup";
+import AlertPopup from "../popups/AlertPopup";
 
 const Popup = () => {
   const { showPopup, setShowPopup, setDarkOverlay } = useContext(PopupContext);
@@ -12,9 +13,14 @@ const Popup = () => {
   const components = {
     Add: AddPopup,
     Edit: EditPopup,
+    Alert: AlertPopup,
   };
 
   const CurrentComponent = components[showPopup];
+
+  useEffect(() => {
+    console.log(showPopup?.message);
+  }, [showPopup]);
 
   return (
     showPopup && (
