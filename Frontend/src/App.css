@@ -55,3 +55,7 @@ button {
     background-color: var(--hover);
   }
 }
+
+input {
+  font-family: inherit;
+}
