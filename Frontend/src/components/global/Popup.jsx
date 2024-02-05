@@ -3,14 +3,18 @@ import closeBtn from "../../assets/icons/close_FILL0_wght400_GRAD0_opsz24.svg";
 import { useContext, useEffect } from "react";
 import { PopupContext } from "../../provider/PopupContext";
 import { TableContext } from "../../provider/TableContext";
+import AddPopup from "../popups/AddPopup";
+import EditPopup from "../popups/EditPopup";
 
 const Popup = () => {
   const { showPopup, setShowPopup, setDarkOverlay } = useContext(PopupContext);
-  const { currentTable } = useContext(TableContext);
 
-  useEffect(() => {
-    console.log(currentTable);
-  }, [currentTable]);
+  const components = {
+    Add: AddPopup,
+    Edit: EditPopup,
+  };
+
+  const CurrentComponent = components[showPopup];
 
   return (
     showPopup && (
@@ -26,21 +30,7 @@ const Popup = () => {
             }}
           />
         </div>
-        <div className="input-area">
-          {currentTable?.keys.map(
-            (key, index) =>
-              index > 0 && (
-                <input
-                  type="text"
-                  key={key}
-                  name={key}
-                  placeholder={currentTable.labels[index]}
-                  autoFocus={index === 1}
-                />
-              )
-          )}
-          <button>{showPopup}</button>
-        </div>
+        <CurrentComponent />
       </div>
     )
   );
