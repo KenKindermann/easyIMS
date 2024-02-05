@@ -2,10 +2,12 @@ import { useContext, useState } from "react";
 import "../../style/navbar.css";
 import Sidebar from "./Sidebar";
 import { OverlayContext } from "../../provider/OverlayContext";
+import { TableContext } from "../../provider/TableContext";
 
 const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const { setDarkOverlay } = useContext(OverlayContext);
+  const { currentTable } = useContext(TableContext);
 
   return (
     <>
@@ -22,7 +24,7 @@ const Navbar = () => {
               <span></span>
               <span></span>
             </div>
-            <p>Customers</p>
+            <p>{currentTable.title}</p>
           </div>
           <div>
             <p>Ken Kindermann</p>
