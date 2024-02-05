@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
+import { TableContext } from "../provider/TableContext";
 
 const useFetch = () => {
-  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
+  const { data, setData } = useContext(TableContext);
 
   const fetchAll = async (url) => {
     try {
@@ -14,7 +15,7 @@ const useFetch = () => {
     }
   };
 
-  return { data, error, fetchAll };
+  return { error, fetchAll };
 };
 
 export default useFetch;

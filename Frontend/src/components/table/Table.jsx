@@ -5,10 +5,13 @@ import { customers, products } from "../../utils/tableFormatter.js";
 import { TableContext } from "../../provider/TableContext.jsx";
 
 const Table = ({ table }) => {
-  const { data, error, fetchAll } = useFetch();
-  const { currentTable, setCurrentTable, selectedId, setSelectedId } = useContext(TableContext);
+  const { error, fetchAll } = useFetch();
+  const { data, currentTable, setCurrentTable, selectedItems, setSelectedItems } = useContext(TableContext);
 
   const url = `http://localhost:8000/${table}`;
+  useEffect(() => {
+    fetchAll(url);
+  }, [url]);
 
   useEffect(() => {
     switch (table) {
@@ -23,18 +26,19 @@ const Table = ({ table }) => {
     }
   }, [table]);
 
-  useEffect(() => {
-    fetchAll(url);
-  }, [url]);
-
   const handleCheckboxChange = (e, itemId) => {
+    const selectedItem = data.find((item) => item.id === itemId);
     if (e.target.checked) {
-      setSelectedId([...selectedId, itemId]);
+      setSelectedItems([...selectedItems, selectedItem]);
     } else {
-      const newSelectedIds = selectedId.filter((id) => id !== itemId);
-      setSelectedId(newSelectedIds);
+      const newSelectedItems = selectedItems.filter((item) => item.id !== itemId);
+      setSelectedItems(newSelectedItems);
     }
   };
+
+  useEffect(() => {
+    console.log(selectedItems);
+  }, [selectedItems]);
 
   return (
     <section className="table">
