@@ -29,7 +29,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <Sidebar showSidebar={showSidebar} />
+      <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
     </>
   );
 };
