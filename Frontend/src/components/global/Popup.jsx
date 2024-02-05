@@ -26,10 +26,21 @@ const Popup = () => {
             }}
           />
         </div>
-        {currentTable?.keys.map(
-          (key, index) =>
-            index > 0 && <input type="text" key={key} name={key} placeholder={currentTable.labels[index]} />
-        )}
+        <div className="input-area">
+          {currentTable?.keys.map(
+            (key, index) =>
+              index > 0 && (
+                <input
+                  type="text"
+                  key={key}
+                  name={key}
+                  placeholder={currentTable.labels[index]}
+                  autoFocus={index === 1}
+                />
+              )
+          )}
+          <button>{showPopup}</button>
+        </div>
       </div>
     )
   );
