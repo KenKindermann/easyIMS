@@ -39,7 +39,15 @@ function App() {
           path="/products"
           element={
             <>
-              <ControlPanel />
+              <ControlPanel
+                buttons={[
+                  <Add key="addButton" />,
+                  <Edit key="editButton" />,
+                  <Delete key="deleteButton" />,
+                  <Search key="searchButton" />,
+                  <Sort key="sortButton" />,
+                ]}
+              />
               <Table table={"products"} />
             </>
           }
