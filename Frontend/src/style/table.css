@@ -6,6 +6,10 @@ table {
   border-collapse: collapse;
 }
 
+.table {
+  overflow-x: auto;
+}
+
 table thead tr th {
   white-space: nowrap;
   padding: 1rem;
@@ -29,6 +33,7 @@ tr td:first-child {
 
 td {
   padding: 1rem !important;
+  white-space: nowrap;
 }
 
 td,
