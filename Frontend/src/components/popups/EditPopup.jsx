@@ -8,7 +8,7 @@ const EditPopup = () => {
   const { showPopup } = useContext(PopupContext);
 
   return (
-    <div className="input-area">
+    <form className="input-area">
       {currentTable?.keys.map(
         (key, index) =>
           index > 0 && (
@@ -23,7 +23,7 @@ const EditPopup = () => {
           )
       )}
       <button>{showPopup}</button>
-    </div>
+    </form>
   );
 };
 
