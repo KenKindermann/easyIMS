@@ -18,10 +18,6 @@ const Popup = () => {
 
   const CurrentComponent = components[showPopup];
 
-  useEffect(() => {
-    console.log(showPopup?.message);
-  }, [showPopup]);
-
   return (
     showPopup && (
       <div className="popup">
