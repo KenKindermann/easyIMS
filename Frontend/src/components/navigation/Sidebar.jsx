@@ -36,6 +36,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       <ul>
         {pages.map((page) => (
           <li
+            key={page.label}
             onClick={() => {
               navigate(page.route), setShowSidebar(false), setDarkOverlay(false);
             }}
