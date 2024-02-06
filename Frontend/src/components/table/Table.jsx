@@ -1,16 +1,16 @@
 import "../../style/table.css";
-import useFetch from "../../hooks/useFetch";
+import useAxios from "../../hooks/useAxios";
 import { useContext, useEffect, useState } from "react";
 import { customers, products } from "../../utils/tableFormatter.js";
 import { TableContext } from "../../provider/TableContext.jsx";
 
 const Table = ({ table }) => {
-  const { error, fetchAll } = useFetch();
+  const { error, getData } = useAxios();
   const { data, currentTable, setCurrentTable, selectedItems, setSelectedItems } = useContext(TableContext);
 
   const url = `http://localhost:8000/${table}`;
   useEffect(() => {
-    fetchAll(url);
+    getData(url);
   }, [url]);
 
   useEffect(() => {
