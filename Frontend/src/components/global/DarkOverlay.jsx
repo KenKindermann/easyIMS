@@ -1,10 +1,17 @@
 import { useContext } from "react";
-import { OverlayContext } from "../../provider/OverlayContext";
+import { PopupContext } from "../../provider/PopupContext";
 import "../../style/overlay.css";
 
 const DarkOverlay = () => {
-  const { darkOverlay, setDarkOverlay } = useContext(OverlayContext);
-  return <div className={darkOverlay ? "dark-overlay" : null} onClick={() => setDarkOverlay(false)}></div>;
+  const { darkOverlay, setDarkOverlay, setShowPopup } = useContext(PopupContext);
+  return (
+    <div
+      className={darkOverlay ? "dark-overlay" : null}
+      onClick={() => {
+        setDarkOverlay(false), setShowPopup(false);
+      }}
+    ></div>
+  );
 };
 
 export default DarkOverlay;

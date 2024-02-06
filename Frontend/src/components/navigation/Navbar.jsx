@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
 import "../../style/navbar.css";
 import Sidebar from "./Sidebar";
-import { OverlayContext } from "../../provider/OverlayContext";
+import { PopupContext } from "../../provider/PopupContext";
+import { TableContext } from "../../provider/TableContext";
 
 const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
-  const { setDarkOverlay } = useContext(OverlayContext);
+  const { setDarkOverlay } = useContext(PopupContext);
+  const { currentTable } = useContext(TableContext);
 
   return (
     <>
@@ -22,14 +24,14 @@ const Navbar = () => {
               <span></span>
               <span></span>
             </div>
-            <p>Customers</p>
+            <p>{currentTable.title}</p>
           </div>
           <div>
             <p>Ken Kindermann</p>
           </div>
         </div>
       </nav>
-      <Sidebar showSidebar={showSidebar} />
+      <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
     </>
   );
 };

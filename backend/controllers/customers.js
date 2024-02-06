@@ -2,6 +2,7 @@ import pool from "../db/server.js";
 
 export const addNewCustomer = async (req, res) => {
   const { firstname, lastname, street, zipcode, city, shippingstreet, shippingzipcode, shippingcity } = req.body;
+
   try {
     const response = await pool.query(
       "INSERT INTO customers (firstname, lastname, street, zipcode, city, shippingstreet, shippingzipcode, shippingcity) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",

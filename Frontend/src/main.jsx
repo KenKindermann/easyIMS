@@ -2,14 +2,17 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
-import { OverlayProvider } from "./provider/OverlayContext.jsx";
+import { PopupProvider } from "./provider/PopupContext.jsx";
+import { TableProvider } from "./provider/TableContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <OverlayProvider>
-        <App />
-      </OverlayProvider>
+      <TableProvider>
+        <PopupProvider>
+          <App />
+        </PopupProvider>
+      </TableProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,18 +1,48 @@
 import { useContext } from "react";
 import "../../style/sidebar.css";
-import { OverlayContext } from "../../provider/OverlayContext";
+import { PopupContext } from "../../provider/PopupContext";
+import { useNavigate } from "react-router-dom";
 
-const Sidebar = ({ showSidebar }) => {
-  const { darkOverlay } = useContext(OverlayContext);
+const Sidebar = ({ showSidebar, setShowSidebar }) => {
+  const { darkOverlay, setDarkOverlay } = useContext(PopupContext);
+  const navigate = useNavigate();
+
+  const pages = [
+    {
+      label: "Documents",
+      route: "/documents",
+    },
+    {
+      label: "Customers",
+      route: "/customers",
+    },
+    {
+      label: "Products",
+      route: "/products",
+    },
+    {
+      label: "Distributors",
+      route: "/distributors",
+    },
+    {
+      label: "Receiving",
+      route: "/receiving",
+    },
+  ];
+
   return (
     <div className={showSidebar && darkOverlay ? "sidebar show" : "sidebar"}>
       <p>easyIWS</p>
       <ul>
-        <li>Documents</li>
-        <li>Customers</li>
-        <li>Products</li>
-        <li>Distributors</li>
-        <li>Receiving</li>
+        {pages.map((page) => (
+          <li
+            onClick={() => {
+              navigate(page.route), setShowSidebar(false), setDarkOverlay(false);
+            }}
+          >
+            {page.label}
+          </li>
+        ))}
       </ul>
     </div>
   );

@@ -1,69 +1,79 @@
 import "../../style/table.css";
-import useFetch from "../../hooks/useFetch";
-import { useEffect } from "react";
+import useAxios from "../../hooks/useAxios";
+import { useContext, useEffect, useState } from "react";
+import { customers, products } from "../../utils/tableFormatter.js";
+import { TableContext } from "../../provider/TableContext.jsx";
 
 const Table = ({ table }) => {
-  const { data, error, fetchAll } = useFetch();
-  const url = `http://localhost:8000/customers`;
+  const { error, getData } = useAxios();
+  const { data, currentTable, setCurrentTable, selectedItems, setSelectedItems } = useContext(TableContext);
+
+  const url = `http://localhost:8000/${table}`;
+  useEffect(() => {
+    getData(url);
+  }, [url]);
 
   useEffect(() => {
-    fetchAll(url);
-  }, []);
+    switch (table) {
+      case "customers":
+        setCurrentTable(customers);
+        break;
+      case "products":
+        setCurrentTable(products);
+        break;
+      default:
+        break;
+    }
+  }, [table]);
+
+  const handleCheckboxChange = (e, itemId) => {
+    const selectedItem = data.find((item) => item.id === itemId);
+    if (e.target.checked) {
+      setSelectedItems([...selectedItems, selectedItem]);
+    } else {
+      const newSelectedItems = selectedItems.filter((item) => item.id !== itemId);
+      setSelectedItems(newSelectedItems);
+    }
+  };
 
   useEffect(() => {
-    console.log(data, error);
-  }, [data, error]);
+    console.log(selectedItems);
+  }, [selectedItems]);
 
   return (
     <section className="table">
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Customer No</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Street</th>
-            <th>Zip code</th>
-            <th>City</th>
-            <th>Shipping street</th>
-            <th>Shipping zip code</th>
-            <th>Shipping city</th>
-          </tr>
-        </thead>
+      {currentTable && data ? (
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              {currentTable.labels.map((label) => (
+                <th key={label}>{label}</th>
+              ))}
+            </tr>
+          </thead>
 
-        <tbody>
-          {/* <tr class="spacer" style={{ height: "15px" }}></tr> */}
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-          </tr>
-          <tr>
-            <td>
-              <input type="checkbox" />
-            </td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-            <td>Ken</td>
-          </tr>
-        </tbody>
-      </table>
+          <tbody>
+            {data?.map((item) => (
+              <tr key={item.id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedItems.some((selectedItem) => selectedItem.id === item.id)}
+                    id={item.id}
+                    onChange={(e) => handleCheckboxChange(e, item.id)}
+                  />
+                </td>
+                {currentTable.keys.map((key) => (
+                  <td key={key}>{item[key]}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>Loading...</p>
+      )}
     </section>
   );
 };
