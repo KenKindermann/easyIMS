@@ -1,0 +1,29 @@
+.drop-down {
+  background-color: white;
+  position: absolute;
+  top: 100%;
+  left: 25%;
+  border-radius: 2px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+  color: var(--secondary);
+  white-space: nowrap;
+  min-height: auto;
+  height: auto;
+  z-index: 20;
+}
+
+.drop-down ul li {
+  padding: 0.75rem;
+
+  &:hover {
+    background-color: rgb(228, 228, 228);
+  }
+}
+
+.drop-down ul li:nth-child(odd) {
+  background-color: rgb(243, 243, 243);
+}
+
+.drop-down ul li:nth-child(odd):hover {
+  background-color: rgb(228, 228, 228);
+}
