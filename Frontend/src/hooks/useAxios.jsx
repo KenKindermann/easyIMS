@@ -4,7 +4,7 @@ import { TableContext } from "../provider/TableContext";
 
 const useAxios = () => {
   const [error, setError] = useState(null);
-  const { setData } = useContext(TableContext);
+  const { setData, setSelectedItems } = useContext(TableContext);
 
   const getData = async (url) => {
     try {
@@ -34,7 +34,23 @@ const useAxios = () => {
     }
   };
 
-  return { error, getData, postData, putData };
+  const deleteData = async (url, items) => {
+    const deletePromises = items.map((item) => {
+      const deleteUrl = `${url}/${item.id}`;
+      return axios.delete(deleteUrl);
+    });
+
+    try {
+      await Promise.all(deletePromises);
+      getData(url);
+      setSelectedItems([]);
+      setsel;
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  return { error, getData, postData, putData, deleteData };
 };
 
 export default useAxios;
