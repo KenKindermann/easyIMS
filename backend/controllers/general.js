@@ -17,7 +17,7 @@ export const getByValue = async (table, req, res) => {
   let query = `SELECT * FROM ${table} WHERE `;
 
   keys.forEach((key, index) => {
-    query += `${key} = $${index + 1}`;
+    query += `${key} ILIKE $${index + 1}`;
     if (index < keys.length - 1) {
       query += " AND ";
     }
