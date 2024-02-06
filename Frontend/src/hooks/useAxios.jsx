@@ -50,7 +50,25 @@ const useAxios = () => {
     }
   };
 
-  return { error, getData, postData, putData, deleteData };
+  const sortData = async (url) => {
+    try {
+      const response = await axios.get(url);
+      setData(response.data);
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  const searchData = async (url) => {
+    try {
+      const response = await axios.get(url);
+      setData(response.data);
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  return { error, getData, postData, putData, deleteData, sortData, searchData };
 };
 
 export default useAxios;
