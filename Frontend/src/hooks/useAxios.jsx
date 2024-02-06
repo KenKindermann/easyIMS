@@ -1,10 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { TableContext } from "../provider/TableContext";
 
 const useAxios = () => {
   const [error, setError] = useState(null);
-  const { data, setData } = useContext(TableContext);
+  const { setData } = useContext(TableContext);
 
   const getData = async (url) => {
     try {
@@ -24,7 +24,17 @@ const useAxios = () => {
     }
   };
 
-  return { error, getData, postData };
+  const putData = async (url, data, id) => {
+    const putUrl = `${url}/${id}`;
+    try {
+      await axios.put(putUrl, data);
+      getData(url);
+    } catch (error) {
+      setError(error);
+    }
+  };
+
+  return { error, getData, postData, putData };
 };
 
 export default useAxios;

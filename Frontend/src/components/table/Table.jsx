@@ -57,7 +57,12 @@ const Table = ({ table }) => {
             {data?.map((item) => (
               <tr>
                 <td>
-                  <input type="checkbox" id={item.id} onChange={(e) => handleCheckboxChange(e, item.id)} />
+                  <input
+                    type="checkbox"
+                    checked={selectedItems.some((selectedItem) => selectedItem.id === item.id)}
+                    id={item.id}
+                    onChange={(e) => handleCheckboxChange(e, item.id)}
+                  />
                 </td>
                 {currentTable.keys.map((key) => (
                   <td>{item[key]}</td>
