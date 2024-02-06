@@ -16,6 +16,13 @@ const EditPopup = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
+
+    for (let key in data) {
+      if (data[key] === "") {
+        data[key] = null;
+      }
+    }
+
     putData(url, data, id);
   };
 
