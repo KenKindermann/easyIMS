@@ -22,6 +22,7 @@ export const customers = {
     "shippingzipcode",
     "shippingcity",
   ],
+  required: ["firstname", "lastname", "street", "zipcode", "city"],
 };
 
 export const products = {
