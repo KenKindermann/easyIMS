@@ -36,10 +36,6 @@ const Table = ({ table }) => {
     }
   };
 
-  useEffect(() => {
-    console.log(selectedItems);
-  }, [selectedItems]);
-
   return (
     <section className="table">
       {currentTable && data ? (
