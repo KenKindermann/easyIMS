@@ -25,7 +25,8 @@
   cursor: pointer;
 }
 
-.input-area {
+form {
+  width: 100%;
   padding: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
