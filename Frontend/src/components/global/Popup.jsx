@@ -6,6 +6,7 @@ import { TableContext } from "../../provider/TableContext";
 import AddPopup from "../popups/AddPopup";
 import EditPopup from "../popups/EditPopup";
 import AlertPopup from "../popups/AlertPopup";
+import SearchPopup from "../popups/SearchPopup";
 
 const Popup = () => {
   const { showPopup, setShowPopup, setDarkOverlay } = useContext(PopupContext);
@@ -14,6 +15,7 @@ const Popup = () => {
     Add: AddPopup,
     Edit: EditPopup,
     Alert: AlertPopup,
+    Search: SearchPopup,
   };
 
   const CurrentComponent = components[showPopup];
