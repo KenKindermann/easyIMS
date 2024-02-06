@@ -48,14 +48,14 @@ const Table = ({ table }) => {
             <tr>
               <th></th>
               {currentTable.labels.map((label) => (
-                <th>{label}</th>
+                <th key={label}>{label}</th>
               ))}
             </tr>
           </thead>
 
           <tbody>
             {data?.map((item) => (
-              <tr>
+              <tr key={item.id}>
                 <td>
                   <input
                     type="checkbox"
@@ -65,7 +65,7 @@ const Table = ({ table }) => {
                   />
                 </td>
                 {currentTable.keys.map((key) => (
-                  <td>{item[key]}</td>
+                  <td key={key}>{item[key]}</td>
                 ))}
               </tr>
             ))}
