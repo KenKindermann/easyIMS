@@ -5,11 +5,9 @@ import DarkOverlay from "./components/global/DarkOverlay";
 import ControlPanel from "./components/controlPanel/ControlPanel";
 import Table from "./components/table/Table";
 import Popup from "./components/global/Popup";
-import Add from "./components/formControls/Add";
-import Search from "./components/formControls/Search";
-import Edit from "./components/formControls/Edit";
-import Delete from "./components/formControls/Delete";
-import Sort from "./components/formControls/Sort";
+import { Add, Edit, Delete, Search, Sort } from "./components/formControls/Buttons";
+
+import InputField from "./components/formControls/InputField";
 
 function App() {
   return (
@@ -23,11 +21,11 @@ function App() {
             <>
               <ControlPanel
                 controls={[
-                  <Add key="addButton" />,
-                  <Edit key="editButton" />,
-                  <Delete key="deleteButton" />,
-                  <Search key="searchButton" />,
-                  <Sort key="sortButton" />,
+                  <Add key="add" />,
+                  <Edit key="edit" />,
+                  <Delete key="delete" />,
+                  <Search key="search" />,
+                  <Sort key="sort" />,
                 ]}
               />
               <Table table={"customers"} />
@@ -41,11 +39,11 @@ function App() {
             <>
               <ControlPanel
                 controls={[
-                  <Add key="addButton" />,
-                  <Edit key="editButton" />,
-                  <Delete key="deleteButton" />,
-                  <Search key="searchButton" />,
-                  <Sort key="sortButton" />,
+                  <Add key="add" />,
+                  <Edit key="edit" />,
+                  <Delete key="delete" />,
+                  <Search key="search" />,
+                  <Sort key="sort" />,
                 ]}
               />
               <Table table={"products"} />
@@ -57,7 +55,12 @@ function App() {
           path="/receiving"
           element={
             <>
-              <ControlPanel controls={[<Search key="searchButton" />]} />
+              <ControlPanel
+                controls={[
+                  <InputField settings={{ placeholder: "Product No or EAN" }} />,
+                  <Search key="searchButton" />,
+                ]}
+              />
               <Table table={"products"} />
             </>
           }
