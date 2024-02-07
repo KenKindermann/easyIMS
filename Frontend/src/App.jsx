@@ -5,7 +5,7 @@ import DarkOverlay from "./components/global/DarkOverlay";
 import ControlPanel from "./components/controlPanel/ControlPanel";
 import Table from "./components/table/Table";
 import Popup from "./components/global/Popup";
-import { Add, Edit, Delete, Search, Sort } from "./components/formControls/Buttons";
+import { OpenPopup, Edit, Delete, Search, Sort } from "./components/formControls/Buttons";
 
 import InputField from "./components/formControls/InputField";
 
@@ -21,10 +21,10 @@ function App() {
             <>
               <ControlPanel
                 controls={[
-                  <Add key="add" />,
+                  <OpenPopup key="add" title="Add" />,
                   <Edit key="edit" />,
                   <Delete key="delete" />,
-                  <Search key="search" />,
+                  <OpenPopup key="search" title="Search" />,
                   <Sort key="sort" />,
                 ]}
               />
@@ -39,10 +39,10 @@ function App() {
             <>
               <ControlPanel
                 controls={[
-                  <Add key="add" />,
+                  <OpenPopup key="add" title="Add" />,
                   <Edit key="edit" />,
                   <Delete key="delete" />,
-                  <Search key="search" />,
+                  <OpenPopup key="search" title="Search" />,
                   <Sort key="sort" />,
                 ]}
               />
@@ -57,8 +57,8 @@ function App() {
             <>
               <ControlPanel
                 controls={[
-                  <InputField settings={{ placeholder: "Product No or EAN" }} />,
-                  <Search key="searchButton" />,
+                  <InputField key="inputField" name="IdInput" placeholder="Product No or EAN" />,
+                  <Search key="searchButton" name="search" function="searchData" />,
                 ]}
               />
               <Table table={"products"} />

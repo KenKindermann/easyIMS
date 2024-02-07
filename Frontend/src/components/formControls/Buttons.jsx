@@ -17,15 +17,23 @@ import useAxios from "../../hooks/useAxios";
 // Components
 import DropDown from "../global/DropDown";
 
+const icons = {
+  Add: addIcon,
+  Edit: editIcon,
+  Delete: deleteIcon,
+  Search: searchIcon,
+  Sort: sortIcon,
+};
+
 // ------------- BUTTONS ------------- //
 
-// Add
-export const Add = () => {
+// OpenPopup
+export const OpenPopup = ({ title }) => {
   const { openPopup } = usePopup();
 
   return (
-    <button onClick={() => openPopup("Add")}>
-      <img src={addIcon} alt={"add icon"} /> Add
+    <button onClick={() => openPopup([title])}>
+      <img src={icons[title]} alt={`${title} icon`} /> {title}
     </button>
   );
 };
@@ -74,11 +82,11 @@ export const Delete = () => {
 };
 
 // Search
-export const Search = () => {
+export const Search = ({ onClick }) => {
   const { openPopup } = usePopup();
 
   return (
-    <button onClick={() => openPopup("Search")}>
+    <button onClick={onClick}>
       <img src={searchIcon} alt={"search icon"} /> Search
     </button>
   );
