@@ -5,11 +5,11 @@ import DarkOverlay from "./components/global/DarkOverlay";
 import ControlPanel from "./components/controlPanel/ControlPanel";
 import Table from "./components/table/Table";
 import Popup from "./components/global/Popup";
-import Add from "./components/buttons/Add";
-import Search from "./components/buttons/Search";
-import Edit from "./components/buttons/Edit";
-import Delete from "./components/buttons/Delete";
-import Sort from "./components/buttons/Sort";
+import Add from "./components/formControls/Add";
+import Search from "./components/formControls/Search";
+import Edit from "./components/formControls/Edit";
+import Delete from "./components/formControls/Delete";
+import Sort from "./components/formControls/Sort";
 
 function App() {
   return (
@@ -22,7 +22,7 @@ function App() {
           element={
             <>
               <ControlPanel
-                buttons={[
+                controls={[
                   <Add key="addButton" />,
                   <Edit key="editButton" />,
                   <Delete key="deleteButton" />,
@@ -40,7 +40,7 @@ function App() {
           element={
             <>
               <ControlPanel
-                buttons={[
+                controls={[
                   <Add key="addButton" />,
                   <Edit key="editButton" />,
                   <Delete key="deleteButton" />,
@@ -48,6 +48,16 @@ function App() {
                   <Sort key="sortButton" />,
                 ]}
               />
+              <Table table={"products"} />
+            </>
+          }
+        />
+
+        <Route
+          path="/receiving"
+          element={
+            <>
+              <ControlPanel controls={[<Search key="searchButton" />]} />
               <Table table={"products"} />
             </>
           }
