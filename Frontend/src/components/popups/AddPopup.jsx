@@ -21,6 +21,7 @@ const AddPopup = () => {
     closePopup();
     const formData = new FormData(e.target);
     let data = Object.fromEntries(formData);
+    data.stock = 0;
 
     for (let key in data) {
       if (data[key] === "") {
