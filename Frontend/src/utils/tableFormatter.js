@@ -1,5 +1,7 @@
 export const customers = {
   title: "Customers",
+  db: "customers",
+  state: "data",
   labels: [
     "Customer No",
     "Fist name",
@@ -22,12 +24,12 @@ export const customers = {
     "shippingzipcode",
     "shippingcity",
   ],
-  types: ["number", "text", "text", "text", "number", "text", "text", "number", "text"],
-  required: ["firstname", "lastname", "street", "zipcode", "city"],
 };
 
 export const products = {
   title: "Products",
+  db: "products",
+  state: "data",
   labels: [
     "Product No",
     "Ean",
@@ -53,36 +55,43 @@ export const products = {
     "gross_retail_price",
     "margin",
     "tax",
-
     "upe",
     "stock",
     "product_group",
     "distributor",
   ],
-  types: [
-    "number",
-    "text",
-    "text",
-    "number",
-    "number",
-    "number",
-    "number",
-    "number",
-    "number",
-    "number",
-    "text",
-    "text",
+};
+
+export const receiving = {
+  title: "Receiving",
+  db: "products",
+  state: "receivingData",
+  labels: [
+    "Quantity",
+    "Product No",
+    "Ean",
+    "Producer",
+    "Details",
+    "NPP",
+    "NRP",
+    "GRP",
+    "Margin",
+    "Tax",
+    "Upe",
+    "Stock",
+    "Product group",
+    "Distributor",
   ],
-  required: [
+  keys: [
     "id",
     "ean",
     "producer",
     "details",
-    "purchase_price_without_tax",
-    "retail_price_without_tax",
-    "retail_price_with_tax",
-    "tax",
+    "net_purchase_price",
+    "net_retail_price",
+    "gross_retail_price",
     "margin",
+    "tax",
     "upe",
     "stock",
     "product_group",

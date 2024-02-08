@@ -3,13 +3,16 @@ import "../../style/popup.css";
 import { TableContext } from "../../provider/TableContext";
 import { PopupContext } from "../../provider/PopupContext";
 import useAxios from "../../hooks/useAxios";
+import { DataContext } from "../../provider/DataContext";
 
 const EditPopup = () => {
-  const { currentTable, selectedItems } = useContext(TableContext);
+  const { selectedItems } = useContext(TableContext);
+  const { activeState } = useContext(DataContext);
+
   const { showPopup } = useContext(PopupContext);
   const { putData } = useAxios();
 
-  const url = `http://localhost:8000/${currentTable.title}`;
+  const url = `http://localhost:8000/${activeState.title}`;
 
   const handleSubmit = (e) => {
     const id = selectedItems[0].id;
@@ -23,16 +26,12 @@ const EditPopup = () => {
       }
     }
 
-    putData(url, data, id);
+    putData(url, data, id, true);
   };
-
-  useEffect(() => {
-    console.log(selectedItems);
-  }, [selectedItems]);
 
   return (
     <form className="input-area" onSubmit={(e) => handleSubmit(e)}>
-      {currentTable?.keys.map(
+      {activeState.table.keys?.map(
         (key, index) =>
           index > 0 && (
             <input
@@ -40,7 +39,7 @@ const EditPopup = () => {
               key={key}
               name={key}
               defaultValue={selectedItems[0][key]}
-              placeholder={currentTable.labels[index]}
+              placeholder={activeState.table.labels[index]}
               autoFocus={index === 1}
             />
           )

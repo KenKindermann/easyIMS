@@ -1,15 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { TableContext } from "../provider/TableContext";
+import { DataContext } from "../provider/DataContext";
 
 const useAxios = () => {
   const [error, setError] = useState(null);
-  const { setData, setSelectedItems } = useContext(TableContext);
+  const { setSelectedItems } = useContext(TableContext);
+  const { activeState } = useContext(DataContext);
 
   const getData = async (url) => {
     try {
       const response = await axios.get(url);
-      setData(response.data);
+      activeState.setData(response.data);
     } catch (error) {
       setError(error);
     }
@@ -24,11 +26,13 @@ const useAxios = () => {
     }
   };
 
-  const putData = async (url, data, id) => {
+  const putData = async (url, data, id, response) => {
     const putUrl = `${url}/${id}`;
     try {
       await axios.put(putUrl, data);
-      getData(url);
+      if (response) {
+        getData(url);
+      }
     } catch (error) {
       setError(error);
     }
@@ -59,10 +63,14 @@ const useAxios = () => {
     }
   };
 
-  const searchData = async (url) => {
+  const searchData = async (url, add) => {
     try {
       const response = await axios.get(url);
-      setData(response.data);
+      if (add) {
+        activeState.setData([...activeState.data, ...response.data]);
+      } else {
+        activeState.setData(response.data);
+      }
     } catch (error) {
       setError(error);
     }

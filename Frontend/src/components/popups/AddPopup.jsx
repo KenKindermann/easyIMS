@@ -6,20 +6,22 @@ import useAxios from "../../hooks/useAxios";
 import usePopup from "../../hooks/usePopup";
 import { customerInputs } from "../../inputs/customerInputs";
 import { productInputs } from "../../inputs/productInputs";
+import { DataContext } from "../../provider/DataContext";
 
 const AddPopup = () => {
-  const { currentTable } = useContext(TableContext);
+  const { activeState } = useContext(DataContext);
   const { showPopup } = useContext(PopupContext);
   const { closePopup } = usePopup();
   const { postData } = useAxios();
 
-  const url = `http://localhost:8000/${currentTable.title}`;
+  const url = `http://localhost:8000/${activeState.title}`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     closePopup();
     const formData = new FormData(e.target);
     let data = Object.fromEntries(formData);
+    data.stock = 0;
 
     for (let key in data) {
       if (data[key] === "") {
@@ -72,7 +74,7 @@ const AddPopup = () => {
 
   return (
     <form className="input-area" onSubmit={(e) => handleSubmit(e)}>
-      {inputs[currentTable.title].map((field, index) => (
+      {inputs[activeState.title].map((field, index) => (
         <input
           type={field.type}
           key={field.key}
@@ -81,7 +83,7 @@ const AddPopup = () => {
           autoFocus={index === 0}
           required={field.required}
           onChange={handleInputChange}
-          tabIndex={index % 2 === 0 ? index + 1 : index + inputs[currentTable.title].length}
+          tabIndex={index % 2 === 0 ? index + 1 : index + inputs[activeState.title].length}
           value={
             field.key === "gross_purchase_price"
               ? grossPurchasePrice

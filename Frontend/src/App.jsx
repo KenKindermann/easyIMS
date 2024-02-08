@@ -5,11 +5,10 @@ import DarkOverlay from "./components/global/DarkOverlay";
 import ControlPanel from "./components/controlPanel/ControlPanel";
 import Table from "./components/table/Table";
 import Popup from "./components/global/Popup";
-import Add from "./components/buttons/Add";
-import Search from "./components/buttons/Search";
-import Edit from "./components/buttons/Edit";
-import Delete from "./components/buttons/Delete";
-import Sort from "./components/buttons/Sort";
+import InputField from "./components/formControls/InputField";
+import Customers from "./components/pages/Customers";
+import Products from "./components/pages/Products";
+import Receiving from "./components/pages/Receiving";
 
 function App() {
   return (
@@ -17,42 +16,11 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route
-          path="/customers"
-          element={
-            <>
-              <ControlPanel
-                buttons={[
-                  <Add key="addButton" />,
-                  <Edit key="editButton" />,
-                  <Delete key="deleteButton" />,
-                  <Search key="searchButton" />,
-                  <Sort key="sortButton" />,
-                ]}
-              />
-              <Table table={"customers"} />
-            </>
-          }
-        />
-
-        <Route
-          path="/products"
-          element={
-            <>
-              <ControlPanel
-                buttons={[
-                  <Add key="addButton" />,
-                  <Edit key="editButton" />,
-                  <Delete key="deleteButton" />,
-                  <Search key="searchButton" />,
-                  <Sort key="sortButton" />,
-                ]}
-              />
-              <Table table={"products"} />
-            </>
-          }
-        />
+        <Route path="/customers" element={<Customers />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/receiving" element={<Receiving />} />
       </Routes>
+
       <Popup />
       <DarkOverlay />
     </>

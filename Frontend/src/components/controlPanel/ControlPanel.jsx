@@ -1,7 +1,8 @@
+import React from "react";
 import "../../style/controlPanel.css";
 
-const ControlPanel = ({ buttons }) => {
-  return <section className="control-panel">{buttons.map((button) => button)}</section>;
+const ControlPanel = ({ controls }) => {
+  return <section className="control-panel">{controls}</section>;
 };
 
 export default ControlPanel;

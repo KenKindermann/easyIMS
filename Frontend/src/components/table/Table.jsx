@@ -1,30 +1,13 @@
 import "../../style/table.css";
-import useAxios from "../../hooks/useAxios";
+import InputField from "../formControls/InputField.jsx";
+
 import { useContext, useEffect, useState } from "react";
-import { customers, products } from "../../utils/tableFormatter.js";
 import { TableContext } from "../../provider/TableContext.jsx";
+import { DataContext } from "../../provider/DataContext.jsx";
 
-const Table = ({ table }) => {
-  const { error, getData } = useAxios();
-  const { data, currentTable, setCurrentTable, selectedItems, setSelectedItems } = useContext(TableContext);
-
-  const url = `http://localhost:8000/${table}`;
-  useEffect(() => {
-    getData(url);
-  }, [url]);
-
-  useEffect(() => {
-    switch (table) {
-      case "customers":
-        setCurrentTable(customers);
-        break;
-      case "products":
-        setCurrentTable(products);
-        break;
-      default:
-        break;
-    }
-  }, [table]);
+const Table = ({ data, setReceivingData }) => {
+  const { selectedItems, setSelectedItems } = useContext(TableContext);
+  const { activeState } = useContext(DataContext);
 
   const handleCheckboxChange = (e, itemId) => {
     const selectedItem = data.find((item) => item.id === itemId);
@@ -36,14 +19,25 @@ const Table = ({ table }) => {
     }
   };
 
+  const handleInputKeyDown = (e, item) => {
+    if (e.key === "Enter") {
+      const addedQuantity = parseInt(e.target.value);
+      setReceivingData((prevState) =>
+        prevState.map((product) =>
+          product.id === item.id ? { ...product, stock: product.stock + addedQuantity } : product
+        )
+      );
+    }
+  };
+
   return (
     <section className="table">
-      {currentTable && data ? (
+      {activeState && data && (
         <table>
           <thead>
             <tr>
               <th></th>
-              {currentTable.labels.map((label) => (
+              {activeState.table.labels.map((label) => (
                 <th key={label}>{label}</th>
               ))}
             </tr>
@@ -60,15 +54,22 @@ const Table = ({ table }) => {
                     onChange={(e) => handleCheckboxChange(e, item.id)}
                   />
                 </td>
-                {currentTable.keys.map((key) => (
+                {activeState.title === "Receiving" && (
+                  <td>
+                    <InputField
+                      style={{ width: "60px" }}
+                      defaultValue={item.receiving}
+                      onKeyDown={(e) => handleInputKeyDown(e, item)}
+                    />
+                  </td>
+                )}
+                {activeState.table.keys.map((key) => (
                   <td key={key}>{item[key]}</td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
-      ) : (
-        <p>Loading...</p>
       )}
     </section>
   );

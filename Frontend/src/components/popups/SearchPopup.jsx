@@ -2,9 +2,10 @@ import React, { useContext, useState } from "react";
 import { TableContext } from "../../provider/TableContext";
 import { PopupContext } from "../../provider/PopupContext";
 import useAxios from "../../hooks/useAxios";
+import { DataContext } from "../../provider/DataContext";
 
 const SearchPopup = () => {
-  const { currentTable } = useContext(TableContext);
+  const { activeState } = useContext(DataContext);
   const { showPopup } = useContext(PopupContext);
   const [formData, setFormData] = useState({});
   const { searchData } = useAxios();
@@ -24,20 +25,19 @@ const SearchPopup = () => {
       .map(([name, value]) => `${encodeURIComponent(name)}=${encodeURIComponent(value)}`)
       .join("&");
 
-    const url = `http://localhost:8000/${currentTable.title}/search?${queryString}`;
+    const url = `http://localhost:8000/${activeState.title}/search?${queryString}`;
     searchData(url);
   };
 
   return (
     <form className="input-area" onSubmit={(e) => handleSubmit(e)}>
-      {currentTable?.keys.map(
+      {activeState?.table.keys.map(
         (key, index) =>
           index > 0 && (
             <input
-              type={currentTable.types[index]}
               key={key}
               name={key}
-              placeholder={currentTable.labels[index]}
+              placeholder={activeState?.table.labels[index]}
               autoFocus={index === 1}
               onChange={handleChange}
             />
