@@ -5,8 +5,10 @@ import DarkOverlay from "./components/global/DarkOverlay";
 import ControlPanel from "./components/controlPanel/ControlPanel";
 import Table from "./components/table/Table";
 import Popup from "./components/global/Popup";
-import { OpenPopup, Edit, Delete, Search, Sort } from "./components/formControls/Buttons";
 import InputField from "./components/formControls/InputField";
+import Customers from "./components/pages/Customers";
+import Products from "./components/pages/Products";
+import Receiving from "./components/pages/Receiving";
 
 function App() {
   return (
@@ -14,57 +16,11 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route
-          path="/customers"
-          element={
-            <>
-              <ControlPanel
-                controls={[
-                  <OpenPopup key="add" title="Add" />,
-                  <Edit key="edit" />,
-                  <Delete key="delete" />,
-                  <OpenPopup key="search" title="Search" />,
-                  <Sort key="sort" />,
-                ]}
-              />
-              <Table table={"customers"} />
-            </>
-          }
-        />
-
-        <Route
-          path="/products"
-          element={
-            <>
-              <ControlPanel
-                controls={[
-                  <OpenPopup key="add" title="Add" />,
-                  <Edit key="edit" />,
-                  <Delete key="delete" />,
-                  <OpenPopup key="search" title="Search" />,
-                  <Sort key="sort" />,
-                ]}
-              />
-              <Table table={"products"} />
-            </>
-          }
-        />
-
-        <Route
-          path="/receiving"
-          element={
-            <>
-              <ControlPanel
-                controls={[
-                  <InputField name="IdInput" placeholder="Product No or EAN" />,
-                  <Search key="searchButton" name="search" function="searchData" />,
-                ]}
-              />
-              <Table table={"receiving"} />
-            </>
-          }
-        />
+        <Route path="/customers" element={<Customers />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/receiving" element={<Receiving />} />
       </Routes>
+
       <Popup />
       <DarkOverlay />
     </>

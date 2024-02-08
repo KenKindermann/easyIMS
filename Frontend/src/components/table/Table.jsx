@@ -1,57 +1,13 @@
 import "../../style/table.css";
-import useAxios from "../../hooks/useAxios";
-import { useContext, useEffect, useState } from "react";
-import { customers, products, receiving } from "../../utils/tableFormatter.js";
-import { TableContext } from "../../provider/TableContext.jsx";
 import InputField from "../formControls/InputField.jsx";
 
-const Table = ({ table }) => {
-  const { error, getData } = useAxios();
-  const {
-    data,
-    setData,
-    currentTable,
-    setCurrentTable,
-    selectedItems,
-    setSelectedItems,
-    receivingData,
-    setReceivingData,
-  } = useContext(TableContext);
+import { useContext, useEffect, useState } from "react";
+import { TableContext } from "../../provider/TableContext.jsx";
+import { DataContext } from "../../provider/DataContext.jsx";
 
-  const states = {
-    data: data,
-    receivingData: receivingData,
-  };
-
-  useEffect(() => {
-    if (currentTable) {
-      if (currentTable.title === "Receiving") {
-        setData();
-      } else {
-        const url = `http://localhost:8000/${currentTable.db}`;
-        getData(url);
-      }
-    }
-  }, [currentTable]);
-
-  useEffect(() => {
-    switch (table) {
-      case "customers":
-        setCurrentTable(customers);
-        break;
-
-      case "products":
-        setCurrentTable(products);
-        break;
-
-      case "receiving":
-        setCurrentTable(receiving);
-        break;
-
-      default:
-        break;
-    }
-  }, [table]);
+const Table = ({ data, setReceivingData, focusInputField }) => {
+  const { selectedItems, setSelectedItems } = useContext(TableContext);
+  const { activeState } = useContext(DataContext);
 
   const handleCheckboxChange = (e, itemId) => {
     const selectedItem = data.find((item) => item.id === itemId);
@@ -74,19 +30,19 @@ const Table = ({ table }) => {
 
   return (
     <section className="table">
-      {currentTable && (
+      {activeState && data && (
         <table>
           <thead>
             <tr>
               <th></th>
-              {currentTable.labels.map((label) => (
+              {activeState.table.labels.map((label) => (
                 <th key={label}>{label}</th>
               ))}
             </tr>
           </thead>
 
           <tbody>
-            {states[currentTable.state]?.map((item) => (
+            {data?.map((item) => (
               <tr key={item.id}>
                 <td>
                   <input
@@ -96,7 +52,7 @@ const Table = ({ table }) => {
                     onChange={(e) => handleCheckboxChange(e, item.id)}
                   />
                 </td>
-                {currentTable.title === "Receiving" && (
+                {activeState.title === "Receiving" && (
                   <td>
                     <InputField
                       style={{ width: "60px" }}
@@ -105,7 +61,7 @@ const Table = ({ table }) => {
                     />
                   </td>
                 )}
-                {currentTable.keys.map((key) => (
+                {activeState.table.keys.map((key) => (
                   <td key={key}>{item[key]}</td>
                 ))}
               </tr>

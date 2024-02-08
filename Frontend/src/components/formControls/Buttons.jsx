@@ -16,6 +16,7 @@ import useAxios from "../../hooks/useAxios";
 
 // Components
 import DropDown from "../global/DropDown";
+import { DataContext } from "../../provider/DataContext";
 
 const icons = {
   Add: addIcon,
@@ -32,7 +33,7 @@ export const OpenPopup = ({ title }) => {
   const { openPopup } = usePopup();
 
   return (
-    <button onClick={() => openPopup([title])}>
+    <button onClick={() => openPopup(title)}>
       <img src={icons[title]} alt={`${title} icon`} /> {title}
     </button>
   );
@@ -67,10 +68,11 @@ export const Edit = () => {
 // Delete
 export const Delete = () => {
   const { deleteData } = useAxios();
-  const { currentTable, selectedItems } = useContext(TableContext);
+  const { selectedItems } = useContext(TableContext);
+  const { activeState } = useContext(DataContext);
 
   const handleClick = () => {
-    const url = `http://localhost:8000/${currentTable.title}`;
+    const url = `http://localhost:8000/${activeState.title}`;
     deleteData(url, selectedItems);
   };
 

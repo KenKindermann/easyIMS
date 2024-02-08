@@ -3,18 +3,18 @@ import { createContext, useContext, useEffect, useState } from "react";
 export const TableContext = createContext();
 
 export const TableProvider = ({ children }) => {
-  const [data, setData] = useState(null);
-  const [currentTable, setCurrentTable] = useState(false);
+  const [currentState, setCurrentState] = useState(null);
+  const [pageTitle, setPageTitle] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);
   const [receivingData, setReceivingData] = useState([]);
 
   const value = {
-    currentTable,
-    setCurrentTable,
+    pageTitle,
+    setPageTitle,
     selectedItems,
     setSelectedItems,
-    data,
-    setData,
+    currentState,
+    setCurrentState,
     receivingData,
     setReceivingData,
   };

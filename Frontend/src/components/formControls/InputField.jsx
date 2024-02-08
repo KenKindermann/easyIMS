@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react";
 import "../../style/InputField.css";
 import { TableContext } from "../../provider/TableContext";
 
-const InputField = ({ placeholder, onChange, style, onKeyDown, key, defaultValue }) => {
+const InputField = ({ placeholder, onChange, style, onKeyDown, defaultValue }) => {
   const { receivingData } = useContext(TableContext);
   const inputField = useRef();
 

@@ -3,11 +3,12 @@ import "../../style/navbar.css";
 import Sidebar from "./Sidebar";
 import { PopupContext } from "../../provider/PopupContext";
 import { TableContext } from "../../provider/TableContext";
+import { DataContext } from "../../provider/DataContext";
 
 const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const { setDarkOverlay } = useContext(PopupContext);
-  const { currentTable } = useContext(TableContext);
+  const { activeState } = useContext(DataContext);
 
   return (
     <>
@@ -24,7 +25,7 @@ const Navbar = () => {
               <span></span>
               <span></span>
             </div>
-            <p>{currentTable.title}</p>
+            <p>{activeState.title}</p>
           </div>
           <div>
             <p>Ken Kindermann</p>

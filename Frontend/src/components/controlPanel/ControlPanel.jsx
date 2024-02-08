@@ -9,38 +9,38 @@ const ControlPanel = ({ controls }) => {
   const { data, currentTable, receivingData, setReceivingData } = useContext(TableContext);
   const { searchData } = useAxios();
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
+  // const handleInputChange = (event) => {
+  //   setInputValue(event.target.value);
+  // };
 
-  const handleClick = () => {
-    const url = `http://localhost:8000/${currentTable.db}/search?ean=${inputValue}`;
-    const add = receivingData.length > 0 ? true : false;
-    searchData(url, receivingData, setReceivingData, add);
-  };
+  // const handleClick = () => {
+  //   const url = `http://localhost:8000/${currentTable.db}/search?ean=${inputValue}`;
+  //   const add = receivingData.length > 0 ? true : false;
+  //   searchData(url, receivingData, setReceivingData, add);
+  // };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      handleClick();
-    }
-  };
+  // const handleKeyDown = (e) => {
+  //   if (e.key === "Enter") {
+  //     handleClick();
+  //   }
+  // };
 
-  useEffect(() => {
-    console.log("ANGEKOMMEN", receivingData);
-  }, [receivingData]);
+  // useEffect(() => {
+  //   console.log("ANGEKOMMEN", receivingData);
+  // }, [receivingData]);
 
-  const updatedControls = React.Children.map(controls, (control) => {
-    if (control.props.name === "IdInput") {
-      return React.cloneElement(control, { onChange: handleInputChange, onKeyDown: handleKeyDown, key: receivingData });
-    } else if (control.props.name === "search") {
-      return React.cloneElement(control, { onClick: handleClick });
-    }
-    {
-      return control;
-    }
-  });
+  // const updatedControls = React.Children.map(controls, (control) => {
+  //   if (control.props.name === "IdInput") {
+  //     return React.cloneElement(control, { onChange: handleInputChange, onKeyDown: handleKeyDown, key: receivingData });
+  //   } else if (control.props.name === "search") {
+  //     return React.cloneElement(control, { onClick: handleClick });
+  //   }
+  //   {
+  //     return control;
+  //   }
+  // });
 
-  return <section className="control-panel">{updatedControls}</section>;
+  return <section className="control-panel">{controls}</section>;
 };
 
 export default ControlPanel;
