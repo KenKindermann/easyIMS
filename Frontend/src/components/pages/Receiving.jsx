@@ -10,18 +10,14 @@ import { receiving } from "../../utils/tableFormatter";
 const Receiving = () => {
   const [receivingData, setReceivingData] = useState([]);
   const [inputValue, setInputValue] = useState(null);
+  const [reload, setReload] = useState(false);
   const { searchData, putData } = useAxios();
-  const { activeState, setActiveState } = useContext(DataContext);
-  const inputRef = useRef();
+  const { setActiveState } = useContext(DataContext);
 
   const url = "http://localhost:8000/products";
 
   useEffect(() => {
     setActiveState({ title: "Receiving", data: receivingData, setData: setReceivingData, table: receiving });
-  }, [receivingData]);
-
-  useEffect(() => {
-    console.log("HIER", receivingData);
   }, [receivingData]);
 
   const handleInputChange = (event) => {
@@ -42,9 +38,10 @@ const Receiving = () => {
 
   const bookReceiving = () => {
     receivingData.map((receiving) => {
-      console.log(receiving);
       putData(url, receiving, receiving.id);
     });
+
+    setReceivingData([]);
   };
 
   return (
