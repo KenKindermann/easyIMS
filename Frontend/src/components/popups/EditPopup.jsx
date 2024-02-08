@@ -26,7 +26,7 @@ const EditPopup = () => {
       }
     }
 
-    putData(url, data, id);
+    putData(url, data, id, true);
   };
 
   return (

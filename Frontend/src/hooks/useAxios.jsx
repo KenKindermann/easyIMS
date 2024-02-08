@@ -26,11 +26,13 @@ const useAxios = () => {
     }
   };
 
-  const putData = async (url, data, id) => {
+  const putData = async (url, data, id, response) => {
     const putUrl = `${url}/${id}`;
     try {
       await axios.put(putUrl, data);
-      getData(url);
+      if (response) {
+        getData(url);
+      }
     } catch (error) {
       setError(error);
     }
