@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { TableContext } from "../../provider/TableContext.jsx";
 import { DataContext } from "../../provider/DataContext.jsx";
 
-const Table = ({ data, setReceivingData, focusInputField }) => {
+const Table = ({ data, setReceivingData }) => {
   const { selectedItems, setSelectedItems } = useContext(TableContext);
   const { activeState } = useContext(DataContext);
 
@@ -23,7 +23,9 @@ const Table = ({ data, setReceivingData, focusInputField }) => {
     if (e.key === "Enter") {
       const addedQuantity = parseInt(e.target.value);
       setReceivingData((prevState) =>
-        prevState.map((product) => (product.id === item.id ? { ...product, receiving: addedQuantity } : product))
+        prevState.map((product) =>
+          product.id === item.id ? { ...product, stock: product.stock + addedQuantity } : product
+        )
       );
     }
   };

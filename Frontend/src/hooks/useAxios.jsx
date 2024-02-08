@@ -61,31 +61,14 @@ const useAxios = () => {
     }
   };
 
-  // const searchData = async (url, state) => {
-  //   try {
-  //     const response = await axios.get(url);
-  //     state(response.data);
-  //   } catch (error) {
-  //     setError(error);
-  //   }
-  // };
-
-  // const searchData = async (url, state, setState, add) => {
-  //   try {
-  //     const response = await axios.get(url);
-  //     if (add) {
-  //       setState([...state, ...response.data]);
-  //     } else {
-  //       setState(response.data);
-  //     }
-  //   } catch (error) {
-  //     setError(error);
-  //   }
-  // };
-  const searchData = async (url) => {
+  const searchData = async (url, add) => {
     try {
       const response = await axios.get(url);
-      activeState.setData(response.data);
+      if (add) {
+        activeState.setData([...activeState.data, ...response.data]);
+      } else {
+        activeState.setData(response.data);
+      }
     } catch (error) {
       setError(error);
     }

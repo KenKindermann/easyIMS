@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import ControlPanel from "../controlPanel/ControlPanel";
 import InputField from "../formControls/InputField";
-import { Search } from "../formControls/Buttons";
+import { CustomButton, Search } from "../formControls/Buttons";
 import Table from "../table/Table.jsx";
 import useAxios from "../../hooks/useAxios";
 import { DataContext } from "../../provider/DataContext";
@@ -10,15 +10,19 @@ import { receiving } from "../../utils/tableFormatter";
 const Receiving = () => {
   const [receivingData, setReceivingData] = useState([]);
   const [inputValue, setInputValue] = useState(null);
-  const { searchData } = useAxios();
+  const { searchData, putData } = useAxios();
   const { activeState, setActiveState } = useContext(DataContext);
   const inputRef = useRef();
 
   const url = "http://localhost:8000/products";
 
   useEffect(() => {
-    setActiveState({ title: "Receiving", setData: setReceivingData, table: receiving });
-  }, []);
+    setActiveState({ title: "Receiving", data: receivingData, setData: setReceivingData, table: receiving });
+  }, [receivingData]);
+
+  useEffect(() => {
+    console.log("HIER", receivingData);
+  }, [receivingData]);
 
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
@@ -27,13 +31,20 @@ const Receiving = () => {
   const handleClick = () => {
     const url = `http://localhost:8000/products/search?ean=${inputValue}`;
     const add = receivingData.length > 0 ? true : false;
-    searchData(url, receivingData, setReceivingData, add);
+    searchData(url, add);
   };
 
   const handleKeyDown = () => {
     if (event.key === "Enter") {
       handleClick();
     }
+  };
+
+  const bookReceiving = () => {
+    receivingData.map((receiving) => {
+      console.log(receiving);
+      putData(url, receiving, receiving.id);
+    });
   };
 
   return (
@@ -47,6 +58,7 @@ const Receiving = () => {
             onKeyDown={handleKeyDown}
           />,
           <Search key="searchButton" name="search" function="searchData" onClick={handleClick} />,
+          <CustomButton onClick={bookReceiving} title="Book receiving" />,
         ]}
       />
       <Table data={receivingData} setReceivingData={setReceivingData} />
