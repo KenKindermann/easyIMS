@@ -83,8 +83,6 @@ export const Delete = () => {
 
 // Search
 export const Search = ({ onClick }) => {
-  const { openPopup } = usePopup();
-
   return (
     <button onClick={onClick}>
       <img src={searchIcon} alt={"search icon"} /> Search

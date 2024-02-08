@@ -6,7 +6,6 @@ import ControlPanel from "./components/controlPanel/ControlPanel";
 import Table from "./components/table/Table";
 import Popup from "./components/global/Popup";
 import { OpenPopup, Edit, Delete, Search, Sort } from "./components/formControls/Buttons";
-
 import InputField from "./components/formControls/InputField";
 
 function App() {
@@ -57,11 +56,11 @@ function App() {
             <>
               <ControlPanel
                 controls={[
-                  <InputField key="inputField" name="IdInput" placeholder="Product No or EAN" />,
+                  <InputField name="IdInput" placeholder="Product No or EAN" />,
                   <Search key="searchButton" name="search" function="searchData" />,
                 ]}
               />
-              <Table table={"products"} />
+              <Table table={"receiving"} />
             </>
           }
         />
