@@ -98,13 +98,24 @@ export const Search = ({ onClick }) => {
 
 // Sort
 export const Sort = () => {
-  const { currentTable } = useContext(TableContext);
   const [showDropDown, setShowDropdown] = useState(false);
 
   return (
     <button onClick={() => setShowDropdown(!showDropDown)}>
       <img src={sortIcon} alt={"sort icon"} /> Sort
-      {showDropDown && <DropDown currentTable={currentTable} />}
+      {showDropDown && <DropDown />}
+    </button>
+  );
+};
+
+// Dropdown
+export const Dropdown = ({ title, items }) => {
+  const [showDropDown, setShowDropdown] = useState(false);
+
+  return (
+    <button onClick={() => setShowDropdown(!showDropDown)}>
+      <img src={sortIcon} alt={"sort icon"} /> {title}
+      {showDropDown && <DropDown items={items} />}
     </button>
   );
 };

@@ -9,6 +9,7 @@ import InputField from "./components/formControls/InputField";
 import Customers from "./components/pages/Customers";
 import Products from "./components/pages/Products";
 import Receiving from "./components/pages/Receiving";
+import Documents from "./components/pages/Documents";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/customers" element={<Customers />} />
         <Route path="/products" element={<Products />} />
         <Route path="/receiving" element={<Receiving />} />
+        <Route path="/documents" element={<Documents />} />
       </Routes>
 
       <Popup />
