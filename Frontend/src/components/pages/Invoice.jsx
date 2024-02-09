@@ -7,32 +7,29 @@ import { DataContext } from "../../provider/DataContext";
 import { useNavigate } from "react-router-dom";
 
 const Invoice = () => {
-  const { selectedItems, setSelectedItems } = useContext(TableContext);
-  const { activeState, setActiveState } = useContext(DataContext);
+  const { setSelectedItems } = useContext(TableContext);
   const [currentStep, setCurrentStep] = useState("Add Customer");
+
   const navigate = useNavigate();
 
   const steps = [
     {
       label: "Add Customer",
+      onClick: () => setCurrentStep("Add Customer"),
     },
     {
-      label: "Add Product",
+      label: "Add Products",
+      onClick: () => setCurrentStep("Add Products"),
     },
     {
       label: "Create Invoice",
+      onClick: () => navigate("/documents"),
     },
   ];
 
   useEffect(() => {
     setSelectedItems([]);
   }, []);
-
-  useEffect(() => {
-    if (currentStep === "Create Invoice") {
-      navigate("/documents");
-    }
-  }, [currentStep]);
 
   return (
     <>
