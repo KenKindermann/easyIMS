@@ -57,7 +57,7 @@ const useAxios = () => {
   const sortData = async (url) => {
     try {
       const response = await axios.get(url);
-      setData(response.data);
+      getData(url);
     } catch (error) {
       setError(error);
     }
