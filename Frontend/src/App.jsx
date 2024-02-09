@@ -10,6 +10,7 @@ import Customers from "./components/pages/Customers";
 import Products from "./components/pages/Products";
 import Receiving from "./components/pages/Receiving";
 import Documents from "./components/pages/Documents";
+import Invoice from "./components/pages/Invoice";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/receiving" element={<Receiving />} />
         <Route path="/documents" element={<Documents />} />
+        <Route path="/documents/invoice/customers" element={<Invoice />} />
       </Routes>
 
       <Popup />
