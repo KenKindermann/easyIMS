@@ -13,12 +13,16 @@ export const getAll = async (table, req, res) => {
 export const getByValue = async (table, req, res) => {
   const querys = req.query;
   const keys = Object.keys(querys);
-  const values = Object.values(querys);
+  const values = Object.values(querys).map((value, index) => (keys[index] === "id" ? parseInt(value) : value));
 
   let query = `SELECT * FROM ${table} WHERE `;
 
   keys.forEach((key, index) => {
-    query += `${key} ILIKE $${index + 1}`;
+    if (key === "id") {
+      query += `${key} = $${index + 1}`;
+    } else {
+      query += `${key} ILIKE $${index + 1}`;
+    }
     if (index < keys.length - 1) {
       query += " AND ";
     }
