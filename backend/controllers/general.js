@@ -1,6 +1,7 @@
 import pool from "../db/server.js";
 
 export const getAll = async (table, req, res) => {
+  console.log("Hello");
   try {
     const response = await pool.query(`SELECT * FROM ${table}`);
     res.json(response.rows);
