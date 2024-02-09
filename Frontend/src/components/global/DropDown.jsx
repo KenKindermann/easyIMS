@@ -1,11 +1,12 @@
 import "../../style/dropdown.css";
 import useAxios from "../../hooks/useAxios";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DataContext } from "../../provider/DataContext";
+import { useNavigate } from "react-router-dom";
 
-const DropDown = () => {
+const DropDown = ({ items }) => {
   const { sortData } = useAxios();
-  const { activeState, setActiveState } = useContext(DataContext);
+  const { activeState } = useContext(DataContext);
 
   const handleClick = (index) => {
     const key = activeState.table.keys[index];
@@ -16,9 +17,17 @@ const DropDown = () => {
   return (
     <div className="drop-down">
       <ul>
-        {activeState.table.labels.map((item, index) => (
-          <li onClick={() => handleClick(index)}>{item}</li>
-        ))}
+        {activeState.title !== "Documents"
+          ? activeState?.table?.labels?.map((item, index) => (
+              <li key={item} onClick={() => handleClick(index)}>
+                {item}
+              </li>
+            ))
+          : items.map((item, index) => (
+              <li key={item.title} onClick={item.onClick}>
+                {item.title}
+              </li>
+            ))}
       </ul>
     </div>
   );
