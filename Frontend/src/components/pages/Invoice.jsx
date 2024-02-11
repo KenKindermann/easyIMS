@@ -3,14 +3,21 @@ import Customers from "./Customers";
 import { TableContext } from "../../provider/TableContext";
 import ProgressBar from "../global/Progressbar";
 import Products from "./Products";
-import { DataContext } from "../../provider/DataContext";
 import { useNavigate } from "react-router-dom";
+import { createPdf } from "../../utils/jsPdfServices.js";
 
 const Invoice = () => {
-  const { setSelectedItems } = useContext(TableContext);
+  const { selectedItems, setSelectedItems } = useContext(TableContext);
   const [currentStep, setCurrentStep] = useState("Add Customer");
 
   const navigate = useNavigate();
+
+  const createInvoice = () => {
+    const newInvoice = { ...selectedItems[0] };
+    newInvoice.customer_id = newInvoice.id;
+    delete newInvoice.id;
+    console.log(newInvoice);
+  };
 
   const steps = [
     {
@@ -23,7 +30,7 @@ const Invoice = () => {
     },
     {
       label: "Create Invoice",
-      onClick: () => navigate("/documents"),
+      onClick: createInvoice,
     },
   ];
 
