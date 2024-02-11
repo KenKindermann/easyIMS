@@ -19,5 +19,9 @@ export const TableProvider = ({ children }) => {
     setReceivingData,
   };
 
+  useEffect(() => {
+    console.log(selectedItems);
+  }, [selectedItems]);
+
   return <TableContext.Provider value={value}>{children}</TableContext.Provider>;
 };

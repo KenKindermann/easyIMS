@@ -21,7 +21,7 @@ const Documents = () => {
   const DropDownItems = [
     {
       title: "Invoice",
-      onClick: () => navigate("/invoice"),
+      onClick: () => navigate("/documents/invoice/customers"),
     },
     {
       title: "Credit",

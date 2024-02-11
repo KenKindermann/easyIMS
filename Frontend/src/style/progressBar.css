@@ -1,0 +1,18 @@
+.progress-bar {
+  display: flex;
+  margin: 1rem;
+  color: var(--primary);
+}
+
+.step {
+  display: flex;
+  cursor: pointer;
+}
+
+.next {
+  margin: 0 0.5rem;
+}
+
+.active {
+  font-weight: bold;
+}

@@ -48,12 +48,7 @@ const Receiving = () => {
     <>
       <ControlPanel
         controls={[
-          <InputField
-            name="IdInput"
-            placeholder="Product No or EAN"
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />,
+          <InputField placeholder="Product No or EAN" onChange={handleInputChange} onKeyDown={handleKeyDown} />,
           <Search key="searchButton" name="search" function="searchData" onClick={handleClick} />,
           <CustomButton onClick={bookReceiving} title="Book receiving" />,
         ]}
