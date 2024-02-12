@@ -19,8 +19,9 @@ const useAxios = () => {
 
   const postData = async (url, data) => {
     try {
-      await axios.post(url, data);
+      const response = await axios.post(url, data);
       getData(url);
+      return response.data;
     } catch (error) {
       setError(error);
     }
