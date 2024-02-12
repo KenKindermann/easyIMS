@@ -27,13 +27,12 @@ export const addInvoice = async (req, res) => {
 };
 
 export const addInvoiceProducts = async (req, res) => {
-  console.log("Hello");
-  const { invoice_id, id, ean, producer, details, tax, gross_retail_price } = req.body;
+  const { invoice_id, id, ean, producer, details, gross_retail_price, tax, net_retail_price } = req.body;
 
   try {
     const response = await pool.query(
-      "INSERT INTO invoice_products (invoice_id, id, ean, producer, details, tax, gross_retail_price) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-      [invoice_id, id, ean, producer, details, tax, gross_retail_price]
+      "INSERT INTO invoice_products (invoice_id, id, ean, producer, details, gross_retail_price, tax, net_retail_price) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+      [invoice_id, id, ean, producer, details, gross_retail_price, tax, net_retail_price]
     );
     res.json(response.rows);
   } catch (error) {
