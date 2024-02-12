@@ -5,18 +5,27 @@ import ProgressBar from "../global/Progressbar";
 import Products from "./Products";
 import { useNavigate } from "react-router-dom";
 import { createPdf } from "../../utils/jsPdfServices.js";
+import useAxios from "../../hooks/useAxios.jsx";
+import moment from "moment";
+import { DataContext } from "../../provider/DataContext.jsx";
 
 const Invoice = () => {
   const { selectedItems, setSelectedItems } = useContext(TableContext);
   const [currentStep, setCurrentStep] = useState("Add Customer");
+  const { postData } = useAxios();
 
   const navigate = useNavigate();
 
-  const createInvoice = () => {
+  const url = `http://localhost:8000/documents/invoices`;
+
+  const createInvoice = async () => {
     const newInvoice = { ...selectedItems[0] };
     newInvoice.customer_id = newInvoice.id;
     delete newInvoice.id;
-    console.log(newInvoice);
+    newInvoice.date = moment().format("YYYY-MM-DD");
+
+    const savedInvoice = await postData(url, newInvoice);
+    console.log(savedInvoice);
   };
 
   const steps = [
