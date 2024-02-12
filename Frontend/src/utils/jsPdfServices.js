@@ -1,77 +1,104 @@
 import jsPDF from "jspdf";
 
-export const createPdf = () => {
-  var date = new Date();
-  var today = date.getDate() + date.getMonth() + "." + date.getFullYear();
-  console.log("KUNDE:", customer, "PRODUCT:", products, "INFOTEXT:", infoText);
-  let pos = 1;
-
+export const createPdf = (invoice, products) => {
   const pdf = new jsPDF();
 
   pdf.setFontSize(10);
-  pdf.text("Musterfirma XYZ", 15, 25);
-  pdf.text("Musterstr. 25", 15, 30);
-  pdf.text("12345 Musterstadt", 15, 35);
-  pdf.text("Rechnungsdatum: " + today, 140, 25);
-  pdf.text("Rechnungsnummer: " + 1321456, 140, 30);
+  pdf.text("Sample Company XYZ", 15, 25);
+  pdf.text("Sample St. 25", 15, 30);
+  pdf.text("12345 Sample City", 15, 35);
+  pdf.text("Invoice date: " + invoice.date.split("T")[0], 140, 25);
+  pdf.text("Invoice number: " + invoice.id, 140, 30);
 
-  pdf.text(`${customer[0].firstName} ${customer[0].lastName}`, 15, 55);
-  pdf.text(`${customer[0].street}`, 15, 60);
-  pdf.text(`${customer[0].zipCode} ${customer[0].city}`, 15, 65);
+  pdf.text(`${invoice.firstname} ${invoice.lastname}`, 15, 55);
+  pdf.text(`${invoice.street}`, 15, 60);
+  pdf.text(`${invoice.zipcode} ${invoice.city}`, 15, 65);
 
   pdf.setFontSize(30);
-  pdf.setFontType("bold");
-  pdf.text("Rechnung", 15, 90);
+  pdf.setFont("helvetica", "bold");
+  pdf.text("Invoice", 15, 90);
 
-  pdf.setFontType("normal");
+  pdf.setFont("helvetica", "normal");
   pdf.setFontSize(10);
 
   pdf.setFillColor(204, 204, 204);
   pdf.rect(15, 97, 181, 4, "F");
 
   pdf.text("Pos", 16, 100);
-  pdf.text("Menge", 26, 100);
-  pdf.text("Artikelnummer", 40, 100);
-  pdf.text("Artikelbeschreibung", 65, 100);
-  pdf.text("Einzelpreis", 150, 100);
-  pdf.text("Gesamtpreis", 175, 100);
+  pdf.text("Product number", 26, 100);
+  pdf.text("Product details", 55, 100);
+  pdf.text("Tax", 140, 100);
+  pdf.text("Net price", 150, 100);
+  pdf.text("Gross price", 175, 100);
 
-  const iphone = new Product(
-    100000,
-    "1234567890123",
-    "Apple",
-    "iPhone 13 Pro",
-    800,
-    1099,
-    "19",
-    1199,
-    "Smartphones",
-    "Komsa",
-    "X"
-  );
   let tableRowHeight = 105;
+  let pos = 1;
+
   for (let i = 0; i < products.length; i++) {
     const productProducerAndDetails = `${products[i].producer} ${products[i].details}`;
-    pdf.text(i.toString(), 16, tableRowHeight.toString());
-    pdf.text(pos.toString(), 26, tableRowHeight.toString());
-    pdf.text(products[i].id.toString(), 40, tableRowHeight.toString());
-    pdf.text(productProducerAndDetails, 65, tableRowHeight.toString());
-    pdf.text(products[i].retailPrice.toString() + "€", 150, tableRowHeight.toString());
-    pdf.text(products[i].retailPrice.toString() + "€", 175, tableRowHeight.toString());
+    pdf.text(pos.toString(), 16, tableRowHeight.toString());
+    pdf.text(products[i].id.toString(), 26, tableRowHeight.toString());
+    pdf.text(productProducerAndDetails, 55, tableRowHeight.toString());
+    pdf.text(products[i].tax.toString(), 140, tableRowHeight.toString());
+    pdf.text(products[i].net_retail_price.toString(), 150, tableRowHeight.toString());
+    pdf.text(products[i].gross_retail_price.toString(), 175, tableRowHeight.toString());
     pos++;
-    tableRowHeight + 5;
+    tableRowHeight += 5;
   }
-  // pdf.text(pos, 18, 105);
-  // pdf.text(iPhone.quantity, 28, 105);
-  // pdf.text(iPhone.productID, 40, 105);
-  // pdf.text(iPhone.details, 65, 105);
-  // pdf.text(String(iPhone.alonePrice), 155, 105);
-  // pdf.text(String(iPhone.alonePrice * iPhone.quantity), 180, 105);
 
-  // FOOTER
+  pdf.line(16, tableRowHeight.toString(), 195, tableRowHeight.toString());
+  tableRowHeight += 5;
+  pdf.text("Total net price:", 140, tableRowHeight.toString());
+
+  const totalNetPrice = products
+    .reduce((acc, product) => {
+      return acc + parseFloat(product.net_retail_price);
+    }, 0)
+    .toFixed(2);
+
+  pdf.text(totalNetPrice.toString(), 175, tableRowHeight.toString());
+
+  const totalGrossPrice = products
+    .reduce((acc, product) => {
+      return acc + parseFloat(product.gross_retail_price);
+    }, 0)
+    .toFixed(2);
+
+  tableRowHeight += 5;
+
+  pdf.setFont("helvetica", "bold");
+  pdf.text("Total retail price:", 140, tableRowHeight.toString());
+  pdf.text(totalGrossPrice.toString(), 175, tableRowHeight.toString());
+
+  tableRowHeight += 40;
+
+  pdf.text("Thank you for your purchase.", 20, tableRowHeight.toString());
+
+  tableRowHeight += 5;
+  pdf.text("The invoice date corresponds to the delivery date.", 20, tableRowHeight.toString());
+
+  tableRowHeight += 5;
+  pdf.text("All prices are in Euros.", 20, tableRowHeight.toString());
+
+  // -------------- FOOTER -------------- //
+  pdf.setFont("helvetica", "normal");
   pdf.line(20, 280, 190, 280);
   pdf.setFontSize(7);
-  pdf.text("FOOTER", 20, 283);
 
-  pdf.save("a4.pdf");
+  // Company data
+  pdf.text("Sample Company XYZ", 20, 286);
+  pdf.text("Sample St. 25", 20, 289);
+  pdf.text("12345 Sample City", 20, 292);
+
+  // Bank data
+  pdf.text("Sample Bank", 85, 286);
+  pdf.text("IBAN: DE12500105170648489890", 85, 289);
+  pdf.text("BIC: COBADEFFXXX", 85, 292);
+
+  // Contact data
+  pdf.text("Contact: John Doe", 150, 286);
+  pdf.text("Email: john.doe@example.com", 150, 289);
+  pdf.text("Phone: +49 123 456789", 150, 292);
+
+  pdf.save(`Invoice_${invoice.id}`);
 };

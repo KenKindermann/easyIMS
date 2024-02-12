@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { createPdf } from "../../utils/jsPdfServices.js";
 import useAxios from "../../hooks/useAxios.jsx";
 import moment from "moment";
-import { DataContext } from "../../provider/DataContext.jsx";
 
 const Invoice = () => {
   const { selectedItems, setSelectedItems } = useContext(TableContext);
@@ -25,7 +24,21 @@ const Invoice = () => {
     newInvoice.date = moment().format("YYYY-MM-DD");
 
     const savedInvoice = await postData(url, newInvoice);
-    console.log(savedInvoice);
+    const invoiceId = savedInvoice[0].id;
+    addInvoiceProducts(savedInvoice);
+  };
+
+  const addInvoiceProducts = (savedInvoice) => {
+    const url = `http://localhost:8000/documents/invoices/invoice_products`;
+    const products = selectedItems.filter((product, index) => index > 0);
+
+    products.map((item) => {
+      item.invoice_id = savedInvoice[0].id;
+      postData(url, item);
+    });
+
+    createPdf(savedInvoice[0], products);
+    navigate("/documents/invoices");
   };
 
   const steps = [
