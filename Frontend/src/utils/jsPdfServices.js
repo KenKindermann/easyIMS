@@ -7,7 +7,7 @@ export const createPdf = (invoice, products) => {
   pdf.text("Sample Company XYZ", 15, 25);
   pdf.text("Sample St. 25", 15, 30);
   pdf.text("12345 Sample City", 15, 35);
-  pdf.text("Invoice date: " + invoice.date.split("T")[0], 140, 25);
+  pdf.text("Invoice date: " + invoice.date, 140, 25);
   pdf.text("Invoice number: " + invoice.id, 140, 30);
 
   pdf.text(`${invoice.firstname} ${invoice.lastname}`, 15, 55);

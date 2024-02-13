@@ -3,6 +3,7 @@ import pool from "../db/server.js";
 export const addInvoice = async (req, res) => {
   const {
     date,
+    time,
     customer_id,
     firstname,
     lastname,
@@ -16,8 +17,20 @@ export const addInvoice = async (req, res) => {
 
   try {
     const response = await pool.query(
-      "INSERT INTO invoices (date, customer_id, firstname, lastname, street, zipcode, city, shippingstreet, shippingzipcode, shippingcity) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
-      [date, customer_id, firstname, lastname, street, zipcode, city, shippingstreet, shippingzipcode, shippingcity]
+      "INSERT INTO invoices (date, time, customer_id, firstname, lastname, street, zipcode, city, shippingstreet, shippingzipcode, shippingcity) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *",
+      [
+        date,
+        time,
+        customer_id,
+        firstname,
+        lastname,
+        street,
+        zipcode,
+        city,
+        shippingstreet,
+        shippingzipcode,
+        shippingcity,
+      ]
     );
     res.json(response.rows);
   } catch (error) {

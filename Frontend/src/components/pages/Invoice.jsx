@@ -22,9 +22,9 @@ const Invoice = () => {
     newInvoice.customer_id = newInvoice.id;
     delete newInvoice.id;
     newInvoice.date = moment().format("YYYY-MM-DD");
+    newInvoice.time = moment().format("HH:mm:ss");
 
     const savedInvoice = await postData(url, newInvoice);
-    const invoiceId = savedInvoice[0].id;
     addInvoiceProducts(savedInvoice);
   };
 
@@ -38,7 +38,7 @@ const Invoice = () => {
     });
 
     createPdf(savedInvoice[0], products);
-    navigate("/documents/invoices");
+    navigate("/documents");
   };
 
   const steps = [
@@ -48,11 +48,11 @@ const Invoice = () => {
     },
     {
       label: "Add Products",
-      onClick: () => setCurrentStep("Add Products"),
+      onClick: selectedItems.length >= 1 ? () => setCurrentStep("Add Products") : () => alert("No customer selected"),
     },
     {
       label: "Create Invoice",
-      onClick: createInvoice,
+      onClick: selectedItems.length >= 2 ? createInvoice : () => alert("No product selected"),
     },
   ];
 
