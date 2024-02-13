@@ -8,6 +8,7 @@ import deleteIcon from "../../assets/icons/delete_FILL0_wght400_GRAD0_opsz24.svg
 import searchIcon from "../../assets/icons/search_FILL0_wght400_GRAD0_opsz24.svg";
 import sortIcon from "../../assets/icons/sort_FILL0_wght400_GRAD0_opsz24.svg";
 import checkIcon from "../../assets/icons/check_FILL0_wght400_GRAD0_opsz24.svg";
+import downloadIcon from "../../assets/icons/download_FILL0_wght400_GRAD0_opsz24.svg";
 
 // Hooks
 import usePopup from "../../hooks/usePopup";
@@ -26,6 +27,7 @@ const icons = {
   Search: searchIcon,
   Sort: sortIcon,
   Check: checkIcon,
+  Download: downloadIcon,
 };
 
 // ------------- BUTTONS ------------- //
