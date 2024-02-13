@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ControlPanel from "../controlPanel/ControlPanel";
 import InputField from "../formControls/InputField";
 import { CustomButton, Search } from "../formControls/Buttons";
@@ -10,7 +10,6 @@ import { receiving } from "../../utils/tableFormatter";
 const Receiving = () => {
   const [receivingData, setReceivingData] = useState([]);
   const [inputValue, setInputValue] = useState(null);
-  const [reload, setReload] = useState(false);
   const { searchData, putData } = useAxios();
   const { setActiveState } = useContext(DataContext);
 
