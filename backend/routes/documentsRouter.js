@@ -12,12 +12,12 @@ documentsRouter
 documentsRouter.route("/search").get((req, res) => getByValue("invoices", req, res));
 documentsRouter.route("/sort/:key").get((req, res) => sortByValue("invoices", req, res));
 
-documentsRouter.route("/credits").get((req, res) => getAll("credits", req, res));
-
 documentsRouter
   .route("/invoices/invoice_products")
   .get((req, res) => getAll("invoice_products", req, res))
   .post(addInvoiceProducts);
+
+documentsRouter.route("/invoices/invoice_products/search").get((req, res) => getByValue("invoice_products", req, res));
 
 documentsRouter.route("/invoices/search").get((req, res) => getByValue("invoices", req, res));
 
