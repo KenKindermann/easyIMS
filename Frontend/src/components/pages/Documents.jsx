@@ -1,6 +1,6 @@
 import Table from "../table/Table.jsx";
 import ControlPanel from "../controlPanel/ControlPanel";
-import { OpenPopup, Sort } from "../formControls/Buttons";
+import { CustomButton, OpenPopup, Sort } from "../formControls/Buttons";
 import { documents, products } from "../../utils/tableFormatter.js";
 import useAxios from "../../hooks/useAxios.jsx";
 import { useContext, useEffect, useState } from "react";
@@ -20,15 +20,11 @@ const Documents = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const invoicesUrl = `http://localhost:8000/documents/invoices`;
-      const invoices = await getData(invoicesUrl);
+      const url = `http://localhost:8000/documents/invoices`;
+      const invoices = await getData(url);
 
-      const creditsUrl = `http://localhost:8000/documents/credits`;
-      const credits = await getData(creditsUrl);
-
-      if (invoices && credits) {
-        const documents = [...invoices, ...credits];
-        const dateAndTime = documents.map((doc) => ({
+      if (invoices) {
+        const dateAndTime = invoices.map((doc) => ({
           ...doc,
           dateAndTime: `${doc.date} ${doc.time}`,
         }));
@@ -40,23 +36,13 @@ const Documents = () => {
     fetchData();
   }, [activeState]);
 
-  const DropDownItems = [
-    {
-      title: "Invoice",
-      onClick: () => navigate("/documents/invoice/customers"),
-    },
-    {
-      title: "Credit",
-      onClick: () => navigate("/credit"),
-    },
-  ];
-
   return (
     <>
       <ControlPanel
         controls={[
-          <Dropdown key="dropdown" title="Add" items={DropDownItems} />,
+          <CustomButton key="add" onClick={() => navigate("/documents/invoices")} title={"Add"} icon={"Add"} />,
           <OpenPopup key="search" title="Search" />,
+          <Sort key="sort" />,
         ]}
       />
       <Table data={documentData} />
