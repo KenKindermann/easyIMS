@@ -1,7 +1,4 @@
 export const customers = {
-  title: "Customers",
-  db: "customers",
-  state: "data",
   labels: [
     "Customer No",
     "Fist name",
@@ -27,9 +24,6 @@ export const customers = {
 };
 
 export const products = {
-  title: "Products",
-  db: "products",
-  state: "data",
   labels: [
     "Product No",
     "Ean",
@@ -63,9 +57,6 @@ export const products = {
 };
 
 export const receiving = {
-  title: "Receiving",
-  db: "products",
-  state: "receivingData",
   labels: [
     "Quantity",
     "Product No",
@@ -97,4 +88,9 @@ export const receiving = {
     "product_group",
     "distributor",
   ],
+};
+
+export const documents = {
+  labels: ["Date", "Time", "Id", "Customer Id", "Fist name", "Last name", "Street", "Zip code", "City"],
+  keys: ["date", "time", "id", "customer_id", "firstname", "lastname", "street", "zipcode", "city"],
 };
