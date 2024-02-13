@@ -12,6 +12,7 @@ const useAxios = () => {
     try {
       const response = await axios.get(url);
       activeState.setData(response.data);
+      return response.data;
     } catch (error) {
       setError(error);
     }
