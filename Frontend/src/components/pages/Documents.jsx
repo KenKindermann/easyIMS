@@ -7,11 +7,13 @@ import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../provider/DataContext.jsx";
 import { Dropdown } from "../formControls/Buttons";
 import { useNavigate } from "react-router-dom";
+import { TableContext } from "../../provider/TableContext.jsx";
 
 const Documents = () => {
   const [documentData, setDocumentData] = useState([]);
   const { getData } = useAxios();
   const { activeState, setActiveState } = useContext(DataContext);
+  const { selectedItems } = useContext(TableContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,6 +38,18 @@ const Documents = () => {
     fetchData();
   }, [activeState]);
 
+  const getInvoiceProducts = async () => {
+    if (selectedItems.length > 1) {
+      alert("More than one document selected.");
+    } else if (selectedItems.length === 0) {
+      alert("No document selected.");
+    } else {
+      const url = `http://localhost:8000/documents/invoices/search?id=${selectedItems[0].id}`;
+      const invoiceProducts = await getData(url);
+      console.log(invoiceProducts);
+    }
+  };
+
   return (
     <>
       <ControlPanel
@@ -43,7 +57,7 @@ const Documents = () => {
           <CustomButton key="add" onClick={() => navigate("/documents/invoices")} title={"Add"} icon={"Add"} />,
           <OpenPopup key="search" title="Search" />,
           <Sort key="sort" />,
-          <CustomButton key="download" title="Download" icon="Download" />,
+          <CustomButton key="download" title="Download" icon="Download" onClick={getInvoiceProducts} />,
         ]}
       />
       <Table data={documentData} />
