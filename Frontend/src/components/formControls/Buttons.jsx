@@ -28,8 +28,13 @@ const icons = {
 
 // ------------- BUTTONS ------------- //
 
-export const CustomButton = ({ onClick, title }) => {
-  return <button onClick={onClick}>{title}</button>;
+// Custom
+export const CustomButton = ({ onClick, title, icon }) => {
+  return (
+    <button img={icons[icon]} onClick={onClick}>
+      <img src={icons[icon]} alt="title icon" /> {title}
+    </button>
+  );
 };
 
 // OpenPopup
