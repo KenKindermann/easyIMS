@@ -19,7 +19,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/receiving" element={<Receiving />} />
         <Route path="/documents" element={<Documents />} />
-        <Route path="/documents/invoice/customers" element={<Invoice />} />
+        <Route path="/documents/invoices" element={<Invoice />} />
       </Routes>
 
       <Popup />
