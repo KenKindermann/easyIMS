@@ -21,10 +21,6 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
       route: "/products",
     },
     {
-      label: "Distributors",
-      route: "/distributors",
-    },
-    {
       label: "Receiving",
       route: "/receiving",
     },
