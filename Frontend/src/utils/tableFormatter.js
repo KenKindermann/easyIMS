@@ -91,6 +91,6 @@ export const receiving = {
 };
 
 export const documents = {
-  labels: ["Date", "Time", "Id", "Customer Id", "Fist name", "Last name", "Street", "Zip code", "City"],
-  keys: ["date", "time", "id", "customer_id", "firstname", "lastname", "street", "zipcode", "city"],
+  labels: ["Time", "Date", "Id", "Customer Id", "Fist name", "Last name", "Street", "Zip code", "City"],
+  keys: ["time", "date", "id", "customer_id", "firstname", "lastname", "street", "zipcode", "city"],
 };
