@@ -9,6 +9,8 @@ documentsRouter
   .get((req, res) => getAll("invoices", req, res))
   .post(addInvoice);
 
+documentsRouter.route("/search").get((req, res) => getByValue("invoices", req, res));
+
 documentsRouter.route("/credits").get((req, res) => getAll("credits", req, res));
 
 documentsRouter.route("/invoices/invoice_products").post(addInvoiceProducts);
