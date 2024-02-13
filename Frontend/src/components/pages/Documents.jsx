@@ -43,6 +43,7 @@ const Documents = () => {
           <CustomButton key="add" onClick={() => navigate("/documents/invoices")} title={"Add"} icon={"Add"} />,
           <OpenPopup key="search" title="Search" />,
           <Sort key="sort" />,
+          <CustomButton key="download" title="Download" icon="Download" />,
         ]}
       />
       <Table data={documentData} />
