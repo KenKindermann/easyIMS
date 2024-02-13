@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { deleteById, getAll, getByValue, sortByValue } from "../controllers/general.js";
+import { getAll, getByValue, sortByValue } from "../controllers/general.js";
 import { addInvoice, addInvoiceProducts } from "../controllers/invoices.js";
 
 const documentsRouter = Router();
@@ -10,6 +10,7 @@ documentsRouter
   .post(addInvoice);
 
 documentsRouter.route("/search").get((req, res) => getByValue("invoices", req, res));
+documentsRouter.route("/sort/:key").get((req, res) => sortByValue("invoices", req, res));
 
 documentsRouter.route("/credits").get((req, res) => getAll("credits", req, res));
 
