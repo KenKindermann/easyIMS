@@ -14,7 +14,10 @@ documentsRouter.route("/sort/:key").get((req, res) => sortByValue("invoices", re
 
 documentsRouter.route("/credits").get((req, res) => getAll("credits", req, res));
 
-documentsRouter.route("/invoices/invoice_products").post(addInvoiceProducts);
+documentsRouter
+  .route("/invoices/invoice_products")
+  .get((req, res) => getAll("invoice_products", req, res))
+  .post(addInvoiceProducts);
 
 documentsRouter.route("/invoices/search").get((req, res) => getByValue("invoices", req, res));
 
