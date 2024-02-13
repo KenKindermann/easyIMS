@@ -4,12 +4,14 @@ import { TableContext } from "../../provider/TableContext";
 import { PopupContext } from "../../provider/PopupContext";
 import useAxios from "../../hooks/useAxios";
 import { DataContext } from "../../provider/DataContext";
+import usePopup from "../../hooks/usePopup";
 
 const EditPopup = () => {
   const { selectedItems } = useContext(TableContext);
   const { activeState } = useContext(DataContext);
 
   const { showPopup } = useContext(PopupContext);
+  const { closePopup } = usePopup();
   const { putData } = useAxios();
 
   const url = `http://localhost:8000/${activeState.title}`;
@@ -17,6 +19,7 @@ const EditPopup = () => {
   const handleSubmit = (e) => {
     const id = selectedItems[0].id;
     e.preventDefault();
+    closePopup();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 

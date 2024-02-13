@@ -3,12 +3,14 @@ import { TableContext } from "../../provider/TableContext";
 import { PopupContext } from "../../provider/PopupContext";
 import useAxios from "../../hooks/useAxios";
 import { DataContext } from "../../provider/DataContext";
+import usePopup from "../../hooks/usePopup";
 
 const SearchPopup = () => {
   const { activeState } = useContext(DataContext);
   const { showPopup } = useContext(PopupContext);
   const [formData, setFormData] = useState({});
   const { searchData } = useAxios();
+  const { closePopup } = usePopup();
 
   const handleChange = (e) => {
     setFormData({
@@ -19,6 +21,7 @@ const SearchPopup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    closePopup();
 
     const queryString = Object.entries(formData)
       .filter(([value]) => value !== "")

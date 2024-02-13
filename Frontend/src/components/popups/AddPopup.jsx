@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import "../../style/popup.css";
-import { TableContext } from "../../provider/TableContext";
 import { PopupContext } from "../../provider/PopupContext";
 import useAxios from "../../hooks/useAxios";
 import usePopup from "../../hooks/usePopup";
