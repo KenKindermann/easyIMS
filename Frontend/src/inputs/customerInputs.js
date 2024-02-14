@@ -1,3 +1,4 @@
+// Utils
 import { inputField } from "../classes/inputField.js";
 
 export const customerInputs = [

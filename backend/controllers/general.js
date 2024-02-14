@@ -1,7 +1,6 @@
 import pool from "../db/server.js";
 
 export const getAll = async (table, req, res) => {
-  console.log("Hello");
   try {
     const response = await pool.query(`SELECT * FROM ${table}`);
     res.json(response.rows);
@@ -18,7 +17,7 @@ export const getByValue = async (table, req, res) => {
   let query = `SELECT * FROM ${table} WHERE `;
 
   keys.forEach((key, index) => {
-    if (key === "id") {
+    if (key === "id" || key === "invoice_id") {
       query += `${key} = $${index + 1}`;
     } else {
       query += `${key} ILIKE $${index + 1}`;
@@ -27,7 +26,7 @@ export const getByValue = async (table, req, res) => {
       query += " AND ";
     }
   });
-
+  console.log(query);
   try {
     const response = await pool.query(query, values);
 

@@ -1,26 +1,43 @@
-import ControlPanel from "../controlPanel/ControlPanel";
+// Hooks
 import useAxios from "../../hooks/useAxios.jsx";
-import Table from "../table/Table.jsx";
-
-import { Delete, Edit, OpenPopup, Sort } from "../formControls/Buttons";
-import { DataContext } from "../../provider/DataContext.jsx";
-import { customers } from "../../utils/tableFormatter.js";
 import { useContext, useEffect, useState } from "react";
+
+// Buttons
+import { Delete, Edit, OpenPopup, Sort } from "../formControls/Buttons";
+
+// Context
+import { DataContext } from "../../provider/DataContext.jsx";
+import { TableContext } from "../../provider/TableContext.jsx";
+
+// TableFormatter
+import { customers } from "../../utils/tableFormatter.js";
+
+// Components
+import ControlPanel from "../controlPanel/ControlPanel";
+import Table from "../table/Table.jsx";
 
 const Customers = () => {
   const [customerData, setCustomerData] = useState([]);
   const { getData } = useAxios();
   const { activeState, setActiveState } = useContext(DataContext);
+  const { setSelectedItems } = useContext(TableContext);
 
   const url = "http://localhost:8000/customers";
 
+  // Set active state to Customers when page is loading
   useEffect(() => {
     setActiveState({ title: "Customers", setData: setCustomerData, table: customers });
   }, []);
 
+  // Get data when active state changes
   useEffect(() => {
     getData(url);
   }, [activeState]);
+
+  // Clear selected items when page is loading
+  useEffect(() => {
+    setSelectedItems([]);
+  }, []);
 
   return (
     <>

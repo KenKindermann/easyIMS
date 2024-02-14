@@ -7,6 +7,8 @@ import editIcon from "../../assets/icons/edit_FILL0_wght400_GRAD0_opsz24.svg";
 import deleteIcon from "../../assets/icons/delete_FILL0_wght400_GRAD0_opsz24.svg";
 import searchIcon from "../../assets/icons/search_FILL0_wght400_GRAD0_opsz24.svg";
 import sortIcon from "../../assets/icons/sort_FILL0_wght400_GRAD0_opsz24.svg";
+import checkIcon from "../../assets/icons/check_FILL0_wght400_GRAD0_opsz24.svg";
+import downloadIcon from "../../assets/icons/download_FILL0_wght400_GRAD0_opsz24.svg";
 
 // Hooks
 import usePopup from "../../hooks/usePopup";
@@ -24,12 +26,19 @@ const icons = {
   Delete: deleteIcon,
   Search: searchIcon,
   Sort: sortIcon,
+  Check: checkIcon,
+  Download: downloadIcon,
 };
 
 // ------------- BUTTONS ------------- //
 
-export const CustomButton = ({ onClick, title }) => {
-  return <button onClick={onClick}>{title}</button>;
+// Custom
+export const CustomButton = ({ onClick, title, icon }) => {
+  return (
+    <button img={icons[icon]} onClick={onClick}>
+      <img src={icons[icon]} alt="title icon" /> {title}
+    </button>
+  );
 };
 
 // OpenPopup

@@ -1,9 +1,13 @@
-import { useContext, useState } from "react";
+// CSS
 import "../../style/navbar.css";
-import Sidebar from "./Sidebar";
+
+// State, Context
+import { useContext, useState } from "react";
 import { PopupContext } from "../../provider/PopupContext";
-import { TableContext } from "../../provider/TableContext";
 import { DataContext } from "../../provider/DataContext";
+
+// Components
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const [showSidebar, setShowSidebar] = useState(false);

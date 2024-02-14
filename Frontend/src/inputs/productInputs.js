@@ -1,3 +1,4 @@
+// Utils
 import { inputField } from "../classes/inputField.js";
 
 export const productInputs = [
@@ -11,7 +12,6 @@ export const productInputs = [
   new inputField("mark", "text", "Mark", true),
   new inputField("net_purchase_price", "number", "Net Purchase Price", true),
   new inputField("margin", "number", "Margin", true),
-
   new inputField("gross_retail_price", "number", "Gross Retail Price", true),
   new inputField("net_retail_price", "number", "Net Retail Price", true),
 ];

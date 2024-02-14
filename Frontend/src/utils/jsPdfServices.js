@@ -1,8 +1,10 @@
+// Libraries
 import jsPDF from "jspdf";
 
 export const createPdf = (invoice, products) => {
   const pdf = new jsPDF();
 
+  // Company data
   pdf.setFontSize(10);
   pdf.text("Sample Company XYZ", 15, 25);
   pdf.text("Sample St. 25", 15, 30);
@@ -10,10 +12,12 @@ export const createPdf = (invoice, products) => {
   pdf.text("Invoice date: " + invoice.date, 140, 25);
   pdf.text("Invoice number: " + invoice.id, 140, 30);
 
+  // Customer data
   pdf.text(`${invoice.firstname} ${invoice.lastname}`, 15, 55);
   pdf.text(`${invoice.street}`, 15, 60);
   pdf.text(`${invoice.zipcode} ${invoice.city}`, 15, 65);
 
+  // Header
   pdf.setFontSize(30);
   pdf.setFont("helvetica", "bold");
   pdf.text("Invoice", 15, 90);
@@ -24,6 +28,7 @@ export const createPdf = (invoice, products) => {
   pdf.setFillColor(204, 204, 204);
   pdf.rect(15, 97, 181, 4, "F");
 
+  // Table head
   pdf.text("Pos", 16, 100);
   pdf.text("Product number", 26, 100);
   pdf.text("Product details", 55, 100);
@@ -34,6 +39,7 @@ export const createPdf = (invoice, products) => {
   let tableRowHeight = 105;
   let pos = 1;
 
+  // Products
   for (let i = 0; i < products.length; i++) {
     const productProducerAndDetails = `${products[i].producer} ${products[i].details}`;
     pdf.text(pos.toString(), 16, tableRowHeight.toString());
@@ -46,6 +52,7 @@ export const createPdf = (invoice, products) => {
     tableRowHeight += 5;
   }
 
+  // Prices
   pdf.line(16, tableRowHeight.toString(), 195, tableRowHeight.toString());
   tableRowHeight += 5;
   pdf.text("Total net price:", 140, tableRowHeight.toString());
@@ -72,6 +79,7 @@ export const createPdf = (invoice, products) => {
 
   tableRowHeight += 40;
 
+  // Informations
   pdf.text("Thank you for your purchase.", 20, tableRowHeight.toString());
 
   tableRowHeight += 5;

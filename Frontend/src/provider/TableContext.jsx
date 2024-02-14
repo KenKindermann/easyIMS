@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
+// Hooks
+import { createContext, useEffect, useState } from "react";
 
 export const TableContext = createContext();
 
@@ -18,10 +19,6 @@ export const TableProvider = ({ children }) => {
     receivingData,
     setReceivingData,
   };
-
-  useEffect(() => {
-    console.log(selectedItems);
-  }, [selectedItems]);
 
   return <TableContext.Provider value={value}>{children}</TableContext.Provider>;
 };

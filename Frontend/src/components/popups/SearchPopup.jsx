@@ -1,7 +1,10 @@
-import React, { useContext, useState } from "react";
-import { TableContext } from "../../provider/TableContext";
-import { PopupContext } from "../../provider/PopupContext";
+// Hooks
+import { useContext, useState } from "react";
 import useAxios from "../../hooks/useAxios";
+import usePopup from "../../hooks/usePopup";
+
+// Context
+import { PopupContext } from "../../provider/PopupContext";
 import { DataContext } from "../../provider/DataContext";
 
 const SearchPopup = () => {
@@ -9,7 +12,9 @@ const SearchPopup = () => {
   const { showPopup } = useContext(PopupContext);
   const [formData, setFormData] = useState({});
   const { searchData } = useAxios();
+  const { closePopup } = usePopup();
 
+  // Add target name and value to formData
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -17,8 +22,10 @@ const SearchPopup = () => {
     });
   };
 
+  // Close popup and create query string for search data in db
   const handleSubmit = (e) => {
     e.preventDefault();
+    closePopup();
 
     const queryString = Object.entries(formData)
       .filter(([value]) => value !== "")

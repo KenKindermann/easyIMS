@@ -1,46 +1,70 @@
-import React, { useContext, useEffect, useState } from "react";
+// Hooks
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAxios from "../../hooks/useAxios.jsx";
+
+// Components
 import Customers from "./Customers";
-import { TableContext } from "../../provider/TableContext";
 import ProgressBar from "../global/Progressbar";
 import Products from "./Products";
-import { useNavigate } from "react-router-dom";
+
+// Context
+import { TableContext } from "../../provider/TableContext";
+
+// Utils
 import { createPdf } from "../../utils/jsPdfServices.js";
-import useAxios from "../../hooks/useAxios.jsx";
+
+// Libraries
 import moment from "moment";
 
 const Invoice = () => {
-  const { selectedItems, setSelectedItems } = useContext(TableContext);
   const [currentStep, setCurrentStep] = useState("Add Customer");
+  const { selectedItems, setSelectedItems } = useContext(TableContext);
   const { postData } = useAxios();
 
   const navigate = useNavigate();
 
   const url = `http://localhost:8000/documents/invoices`;
 
+  // Clear selectedItems when page is loading
+  useEffect(() => {
+    setSelectedItems([]);
+  }, []);
+
+  // Create invoice
   const createInvoice = async () => {
     const newInvoice = { ...selectedItems[0] };
+
+    // Change id to customer_id
     newInvoice.customer_id = newInvoice.id;
     delete newInvoice.id;
+
+    // Set date and time
     newInvoice.date = moment().format("YYYY-MM-DD");
     newInvoice.time = moment().format("HH:mm:ss");
 
+    // Post new invoice in db
     const savedInvoice = await postData(url, newInvoice);
     addInvoiceProducts(savedInvoice);
   };
 
+  // Add invoice products
   const addInvoiceProducts = (savedInvoice) => {
     const url = `http://localhost:8000/documents/invoices/invoice_products`;
     const products = selectedItems.filter((product, index) => index > 0);
 
+    // Post products in db
     products.map((item) => {
       item.invoice_id = savedInvoice[0].id;
       postData(url, item);
     });
 
+    // Create pdf and navigate to /documents
     createPdf(savedInvoice[0], products);
     navigate("/documents");
   };
 
+  // Create invoice steps
   const steps = [
     {
       label: "Add Customer",
@@ -55,10 +79,6 @@ const Invoice = () => {
       onClick: selectedItems.length >= 2 ? createInvoice : () => alert("No product selected"),
     },
   ];
-
-  useEffect(() => {
-    setSelectedItems([]);
-  }, []);
 
   return (
     <>

@@ -1,5 +1,8 @@
-import { useContext } from "react";
+// CSS
 import "../../style/sidebar.css";
+
+// Navigate, Context
+import { useContext } from "react";
 import { PopupContext } from "../../provider/PopupContext";
 import { useNavigate } from "react-router-dom";
 
@@ -19,10 +22,6 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
     {
       label: "Products",
       route: "/products",
-    },
-    {
-      label: "Distributors",
-      route: "/distributors",
     },
     {
       label: "Receiving",

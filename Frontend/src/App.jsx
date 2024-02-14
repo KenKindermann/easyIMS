@@ -1,5 +1,10 @@
+// CSS
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+
+// Router
+import { Routes, Route, Navigate } from "react-router-dom";
+
+// Components
 import Navbar from "./components/navigation/Navbar";
 import DarkOverlay from "./components/global/DarkOverlay";
 import Popup from "./components/global/Popup";
@@ -15,11 +20,12 @@ function App() {
       <Navbar />
 
       <Routes>
+        <Route path="/" element={<Navigate to="/documents" replace />} />
         <Route path="/customers" element={<Customers />} />
         <Route path="/products" element={<Products />} />
         <Route path="/receiving" element={<Receiving />} />
         <Route path="/documents" element={<Documents />} />
-        <Route path="/documents/invoice/customers" element={<Invoice />} />
+        <Route path="/documents/invoices" element={<Invoice />} />
       </Routes>
 
       <Popup />

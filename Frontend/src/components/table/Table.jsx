@@ -1,14 +1,21 @@
+// CSS
 import "../../style/table.css";
-import InputField from "../formControls/InputField.jsx";
 
-import { useContext, useEffect, useState } from "react";
+//Hooks
+import { useContext } from "react";
+
+// Context
 import { TableContext } from "../../provider/TableContext.jsx";
 import { DataContext } from "../../provider/DataContext.jsx";
+
+// Components
+import InputField from "../formControls/InputField.jsx";
 
 const Table = ({ data, setReceivingData }) => {
   const { selectedItems, setSelectedItems } = useContext(TableContext);
   const { activeState } = useContext(DataContext);
 
+  // Add or delete items in selectedItems when checkboxes checked status changes
   const handleCheckboxChange = (e, itemId) => {
     const selectedItem = data.find((item) => item.id === itemId);
     if (e.target.checked) {
@@ -19,6 +26,7 @@ const Table = ({ data, setReceivingData }) => {
     }
   };
 
+  // When key is enter, set receiving data
   const handleInputKeyDown = (e, item) => {
     if (e.key === "Enter") {
       const addedQuantity = parseInt(e.target.value);
