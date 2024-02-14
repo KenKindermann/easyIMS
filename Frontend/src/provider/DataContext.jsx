@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
+// Hooks
+import { createContext, useState } from "react";
 
 export const DataContext = createContext();
 

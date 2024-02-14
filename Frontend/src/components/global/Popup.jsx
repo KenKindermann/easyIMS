@@ -1,11 +1,16 @@
+// CSS
 import "../../style/popup.css";
+
+// Icons
 import closeBtn from "../../assets/icons/close_FILL0_wght400_GRAD0_opsz24.svg";
-import { useContext, useEffect } from "react";
+
+// Context
+import { useContext } from "react";
 import { PopupContext } from "../../provider/PopupContext";
-import { TableContext } from "../../provider/TableContext";
+
+// Popups
 import AddPopup from "../popups/AddPopup";
 import EditPopup from "../popups/EditPopup";
-import AlertPopup from "../popups/AlertPopup";
 import SearchPopup from "../popups/SearchPopup";
 
 const Popup = () => {
@@ -14,7 +19,6 @@ const Popup = () => {
   const components = {
     Add: AddPopup,
     Edit: EditPopup,
-    Alert: AlertPopup,
     Search: SearchPopup,
   };
 

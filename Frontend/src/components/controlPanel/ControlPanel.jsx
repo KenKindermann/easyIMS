@@ -1,4 +1,3 @@
-import React from "react";
 import "../../style/controlPanel.css";
 
 const ControlPanel = ({ controls }) => {

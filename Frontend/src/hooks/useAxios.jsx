@@ -1,13 +1,19 @@
-import { useContext, useEffect, useState } from "react";
-import axios from "axios";
+// Hooks
+import { useContext, useState } from "react";
+
+// Context
 import { TableContext } from "../provider/TableContext";
 import { DataContext } from "../provider/DataContext";
+
+// Libraries
+import axios from "axios";
 
 const useAxios = () => {
   const [error, setError] = useState(null);
   const { setSelectedItems } = useContext(TableContext);
   const { activeState } = useContext(DataContext);
 
+  // Get data by url parameter
   const getData = async (url) => {
     try {
       const response = await axios.get(url);
@@ -18,6 +24,7 @@ const useAxios = () => {
     }
   };
 
+  // Post data by url and data parameter
   const postData = async (url, data) => {
     try {
       const response = await axios.post(url, data);
@@ -28,6 +35,7 @@ const useAxios = () => {
     }
   };
 
+  // Put data by url, data, id, response parameter
   const putData = async (url, data, id, response) => {
     const putUrl = `${url}/${id}`;
     try {
@@ -40,6 +48,7 @@ const useAxios = () => {
     }
   };
 
+  // Delete data by url and items parameter
   const deleteData = async (url, items) => {
     const deletePromises = items.map((item) => {
       const deleteUrl = `${url}/${item.id}`;
@@ -56,6 +65,7 @@ const useAxios = () => {
     }
   };
 
+  // Sort data by url parameter
   const sortData = async (url) => {
     try {
       const response = await axios.get(url);
@@ -65,6 +75,7 @@ const useAxios = () => {
     }
   };
 
+  // Search data by url parameter, replace or add response by add parameter
   const searchData = async (url, add) => {
     try {
       const response = await axios.get(url);

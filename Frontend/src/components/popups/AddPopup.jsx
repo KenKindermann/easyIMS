@@ -1,11 +1,18 @@
-import { useContext, useEffect, useState } from "react";
+// CSS
 import "../../style/popup.css";
-import { PopupContext } from "../../provider/PopupContext";
+
+// Hooks
+import { useContext, useEffect, useState } from "react";
 import useAxios from "../../hooks/useAxios";
 import usePopup from "../../hooks/usePopup";
+
+// Context
+import { PopupContext } from "../../provider/PopupContext";
+import { DataContext } from "../../provider/DataContext";
+
+// Components
 import { customerInputs } from "../../inputs/customerInputs";
 import { productInputs } from "../../inputs/productInputs";
-import { DataContext } from "../../provider/DataContext";
 
 const AddPopup = () => {
   const { activeState } = useContext(DataContext);
@@ -15,6 +22,7 @@ const AddPopup = () => {
 
   const url = `http://localhost:8000/${activeState.title}`;
 
+  // Close popup and create new FormData by form submit
   const handleSubmit = (e) => {
     e.preventDefault();
     closePopup();
@@ -35,6 +43,7 @@ const AddPopup = () => {
     Products: productInputs,
   };
 
+  // States for price calculation
   const [netPurchasePrice, setNetPurchasePrice] = useState("");
   const [grossPurchasePrice, setGrossPurchasePrice] = useState("");
   const [grossRetailPrice, setGrossRetailPrice] = useState("");
@@ -42,6 +51,7 @@ const AddPopup = () => {
   const [tax, setTax] = useState("");
   const [margin, setMargin] = useState("");
 
+  // Calculate prices when specific input changes
   useEffect(() => {
     if (grossRetailPrice && tax) {
       setNetRetailPrice(Math.round((grossRetailPrice / (1 + tax / 100)) * 100) / 100);

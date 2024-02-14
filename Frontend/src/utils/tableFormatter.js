@@ -1,3 +1,4 @@
+// Customer table
 export const customers = {
   labels: [
     "Customer No",
@@ -23,6 +24,7 @@ export const customers = {
   ],
 };
 
+// Products table
 export const products = {
   labels: [
     "Product No",
@@ -56,6 +58,7 @@ export const products = {
   ],
 };
 
+// Receiving table
 export const receiving = {
   labels: [
     "Quantity",
@@ -90,6 +93,7 @@ export const receiving = {
   ],
 };
 
+// Documents table
 export const documents = {
   labels: ["Time", "Date", "Id", "Customer Id", "Fist name", "Last name", "Street", "Zip code", "City"],
   keys: ["time", "date", "id", "customer_id", "firstname", "lastname", "street", "zipcode", "city"],

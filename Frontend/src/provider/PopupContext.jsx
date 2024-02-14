@@ -1,3 +1,4 @@
+// Hooks
 import { createContext, useState } from "react";
 
 export const PopupContext = createContext();

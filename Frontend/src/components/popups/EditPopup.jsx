@@ -1,10 +1,15 @@
-import { useContext, useEffect } from "react";
+// CSS
 import "../../style/popup.css";
+
+// Hooks
+import { useContext } from "react";
+import useAxios from "../../hooks/useAxios";
+import usePopup from "../../hooks/usePopup";
+
+// Context
 import { TableContext } from "../../provider/TableContext";
 import { PopupContext } from "../../provider/PopupContext";
-import useAxios from "../../hooks/useAxios";
 import { DataContext } from "../../provider/DataContext";
-import usePopup from "../../hooks/usePopup";
 
 const EditPopup = () => {
   const { selectedItems } = useContext(TableContext);
@@ -16,6 +21,7 @@ const EditPopup = () => {
 
   const url = `http://localhost:8000/${activeState.title}`;
 
+  // Close popup and create new FormData by form submit
   const handleSubmit = (e) => {
     const id = selectedItems[0].id;
     e.preventDefault();

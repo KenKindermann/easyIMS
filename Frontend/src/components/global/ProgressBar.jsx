@@ -1,11 +1,7 @@
-import React from "react";
-
+// CSS
 import "../../style/progressBar.css";
-import { useNavigate } from "react-router-dom";
 
-function ProgressBar({ steps, currentStep, setCurrentStep, onClick }) {
-  const navigate = useNavigate();
-
+function ProgressBar({ steps, currentStep }) {
   return (
     <div className="progress-bar">
       {steps.map((step, index) => (
@@ -13,7 +9,7 @@ function ProgressBar({ steps, currentStep, setCurrentStep, onClick }) {
           <span className={currentStep === step.label ? "active" : null} onClick={step.onClick}>
             {step.label}
           </span>
-          {index < steps.length - 1 && <div className="next"> ></div>}
+          {index < steps.length - 1 && <div className="next"> {">"} </div>}
         </div>
       ))}
     </div>
