@@ -32,7 +32,7 @@ const SearchPopup = () => {
       .map(([name, value]) => `${encodeURIComponent(name)}=${encodeURIComponent(value)}`)
       .join("&");
 
-    const url = `http://localhost:8000/${activeState.title}/search?${queryString}`;
+    const url = `https://easyims.onrender.com/${activeState.title}/search?${queryString}`;
     searchData(url);
   };
 

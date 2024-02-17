@@ -22,7 +22,7 @@ const Receiving = () => {
   const { searchData, putData } = useAxios();
   const { setActiveState } = useContext(DataContext);
 
-  const url = "http://localhost:8000/products";
+  const url = "https://easyims.onrender.com/products";
 
   // Set active state to receiving when page is loading
   useEffect(() => {
@@ -36,7 +36,7 @@ const Receiving = () => {
 
   // Search data when button gets clicked
   const handleClick = () => {
-    const url = `http://localhost:8000/products/search?ean=${inputValue}`;
+    const url = `https://easyims.onrender.com/products/search?ean=${inputValue}`;
     const add = receivingData.length > 0 ? true : false;
     searchData(url, add);
   };

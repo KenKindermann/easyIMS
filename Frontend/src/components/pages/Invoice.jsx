@@ -24,7 +24,7 @@ const Invoice = () => {
 
   const navigate = useNavigate();
 
-  const url = `http://localhost:8000/documents/invoices`;
+  const url = `https://easyims.onrender.com/documents/invoices`;
 
   // Clear selectedItems when page is loading
   useEffect(() => {
@@ -50,8 +50,8 @@ const Invoice = () => {
 
   // Add invoice products
   const addInvoiceProducts = (savedInvoice) => {
-    const url = `http://localhost:8000/documents/invoices/invoice_products`;
-    const products = selectedItems.filter((product, index) => index > 0);
+    const url = `https://easyims.onrender.com/documents/invoices/invoice_products`;
+    const products = selectedItems.filter((_, index) => index > 0);
 
     // Post products in db
     products.map((item) => {

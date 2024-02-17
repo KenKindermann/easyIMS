@@ -85,7 +85,7 @@ export const Delete = () => {
   const { activeState } = useContext(DataContext);
 
   const handleClick = () => {
-    const url = `http://localhost:8000/${activeState.title}`;
+    const url = `https://easyims.onrender.com/${activeState.title}`;
     deleteData(url, selectedItems);
   };
 

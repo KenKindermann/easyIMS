@@ -8,14 +8,14 @@ import useAxios from "../../hooks/useAxios";
 import { useContext } from "react";
 import { DataContext } from "../../provider/DataContext";
 
-const DropDown = ({ items }) => {
+const DropDown = () => {
   const { sortData } = useAxios();
   const { activeState } = useContext(DataContext);
 
   // Sort data by clicked item in Dropdown
   const handleClick = (index) => {
     const key = activeState.table.keys[index];
-    const url = `http://localhost:8000/${activeState.title}/sort/${key}`;
+    const url = `https://easyims.onrender.com/${activeState.title}/sort/${key}`;
     sortData(url);
   };
 

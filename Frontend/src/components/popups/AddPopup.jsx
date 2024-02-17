@@ -20,7 +20,7 @@ const AddPopup = () => {
   const { closePopup } = usePopup();
   const { postData } = useAxios();
 
-  const url = `http://localhost:8000/${activeState.title}`;
+  const url = `https://easyims.onrender.com/${activeState.title}`;
 
   // Close popup and create new FormData by form submit
   const handleSubmit = (e) => {

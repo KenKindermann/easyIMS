@@ -22,7 +22,7 @@ const Customers = () => {
   const { activeState, setActiveState } = useContext(DataContext);
   const { setSelectedItems } = useContext(TableContext);
 
-  const url = "http://localhost:8000/customers";
+  const url = "https://easyims.onrender.com/customers";
 
   // Set active state to Customers when page is loading
   useEffect(() => {

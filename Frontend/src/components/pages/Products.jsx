@@ -20,7 +20,7 @@ const Products = () => {
   const { getData } = useAxios();
   const { activeState, setActiveState } = useContext(DataContext);
 
-  const url = "http://localhost:8000/products";
+  const url = "https://easyims.onrender.com/products";
 
   // Set active state to products when page is loading
   useEffect(() => {

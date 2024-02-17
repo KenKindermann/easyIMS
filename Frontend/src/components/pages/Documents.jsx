@@ -40,7 +40,7 @@ const Documents = () => {
 
   // Fetch invoice data from db
   const fetchData = async () => {
-    const url = `http://localhost:8000/documents/invoices`;
+    const url = `https://easyims.onrender.com/documents/invoices`;
     const invoices = await getData(url);
 
     // Merge date and time in one key
