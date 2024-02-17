@@ -1,4 +1,4 @@
-import "../../style/InputField.css";
+import "../../style/inputField.css";
 
 const InputField = ({ placeholder, onChange, style, onKeyDown, defaultValue }) => {
   return (
