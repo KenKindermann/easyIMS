@@ -15,6 +15,6 @@ An inventory management system that allows you to add customers and products, re
 
 ## Screenshots 📸
 
-![customersScreenshot](public/assets/customersScreenshot.png)
-![productsScreenshot](public/assets/productsScreenshot.png)
-![invoiceScreenshot](public/assets/invoiceScreenshot.png)
+![customersScreenshot](Frontend/public/assets/customersScreenshot.png)
+![productsScreenshot](Frontend/public/assets/productsScreenshot.png)
+![invoiceScreenshot](Frontend/public/assets/invoiceScreenshot.png)
