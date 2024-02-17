@@ -65,7 +65,7 @@ const Documents = () => {
       alert("No document selected.");
     } else {
       // When only one checkbox is checked, get the products data of the invoice and create pdf
-      const url = `http://localhost:8000/documents/invoices/invoice_products/search?invoice_id=${selectedItems[0].id}`;
+      const url = `https://easyims.onrender.com/documents/invoices/invoice_products/search?invoice_id=${selectedItems[0].id}`;
       const invoiceProducts = await getData(url);
       createPdf(selectedItems[0], invoiceProducts);
       fetchData();

@@ -1,15 +1,6 @@
 // CSS
 import "../../style/button.css";
 
-// Icons
-import addIcon from "../../assets/icons/add_FILL0_wght400_GRAD0_opsz24.svg";
-import editIcon from "../../assets/icons/edit_FILL0_wght400_GRAD0_opsz24.svg";
-import deleteIcon from "../../assets/icons/delete_FILL0_wght400_GRAD0_opsz24.svg";
-import searchIcon from "../../assets/icons/search_FILL0_wght400_GRAD0_opsz24.svg";
-import sortIcon from "../../assets/icons/sort_FILL0_wght400_GRAD0_opsz24.svg";
-import checkIcon from "../../assets/icons/check_FILL0_wght400_GRAD0_opsz24.svg";
-import downloadIcon from "../../assets/icons/download_FILL0_wght400_GRAD0_opsz24.svg";
-
 // Hooks
 import usePopup from "../../hooks/usePopup";
 import { useContext, useState } from "react";
@@ -21,13 +12,13 @@ import DropDown from "../global/DropDown";
 import { DataContext } from "../../provider/DataContext";
 
 const icons = {
-  Add: addIcon,
-  Edit: editIcon,
-  Delete: deleteIcon,
-  Search: searchIcon,
-  Sort: sortIcon,
-  Check: checkIcon,
-  Download: downloadIcon,
+  Add: "/assets/icons/add_FILL0_wght400_GRAD0_opsz24.svg",
+  Edit: "/assets/icons/edit_FILL0_wght400_GRAD0_opsz24.svg",
+  Delete: "/assets/icons/delete_FILL0_wght400_GRAD0_opsz24.svg",
+  Search: "/assets/icons/search_FILL0_wght400_GRAD0_opsz24.svg",
+  Sort: "/assets/icons/sort_FILL0_wght400_GRAD0_opsz24.svg",
+  Check: "/assets/icons/check_FILL0_wght400_GRAD0_opsz24.svg",
+  Download: "/assets/icons/download_FILL0_wght400_GRAD0_opsz24.svg",
 };
 
 // ------------- BUTTONS ------------- //
@@ -73,7 +64,7 @@ export const Edit = () => {
 
   return (
     <button onClick={handleClick}>
-      <img src={editIcon} alt={"edit icon"} /> Edit
+      <img src={icons["Edit"]} alt={"edit icon"} /> Edit
     </button>
   );
 };
@@ -91,7 +82,7 @@ export const Delete = () => {
 
   return (
     <button onClick={() => handleClick()}>
-      <img src={deleteIcon} alt={"delete icon"} /> Delete
+      <img src={icons["Delete"]} alt={"delete icon"} /> Delete
     </button>
   );
 };
@@ -100,7 +91,7 @@ export const Delete = () => {
 export const Search = ({ onClick }) => {
   return (
     <button onClick={onClick}>
-      <img src={searchIcon} alt={"search icon"} /> Search
+      <img src={icons["Search"]} alt={"search icon"} /> Search
     </button>
   );
 };
@@ -111,7 +102,7 @@ export const Sort = () => {
 
   return (
     <button onClick={() => setShowDropdown(!showDropDown)}>
-      <img src={sortIcon} alt={"sort icon"} /> Sort
+      <img src={icons["Sort"]} alt={"sort icon"} /> Sort
       {showDropDown && <DropDown />}
     </button>
   );
