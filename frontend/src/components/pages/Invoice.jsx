@@ -5,7 +5,7 @@ import useAxios from "../../hooks/useAxios.jsx";
 
 // Components
 import Customers from "./Customers";
-import ProgressBar from "../global/Progressbar";
+import ProgressBar from "../global/ProgressBar";
 import Products from "./Products";
 
 // Context
