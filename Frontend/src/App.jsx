@@ -1,8 +1,12 @@
 // CSS
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 
 // Router
 import { Routes, Route, Navigate } from "react-router-dom";
+
+// Libraries
+import { ToastContainer } from "react-toastify";
 
 // Components
 import Navbar from "./components/navigation/Navbar";
@@ -30,6 +34,20 @@ function App() {
 
       <Popup />
       <DarkOverlay />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      {/* Same as */}
+      <ToastContainer />
     </>
   );
 }

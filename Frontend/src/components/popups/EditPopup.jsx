@@ -10,6 +10,7 @@ import usePopup from "../../hooks/usePopup";
 import { TableContext } from "../../provider/TableContext";
 import { PopupContext } from "../../provider/PopupContext";
 import { DataContext } from "../../provider/DataContext";
+import { successToast } from "../../utils/toasts";
 
 const EditPopup = () => {
   const { selectedItems } = useContext(TableContext);
@@ -36,6 +37,7 @@ const EditPopup = () => {
     }
 
     putData(url, data, id, true);
+    successToast("Successfully edited");
   };
 
   return (

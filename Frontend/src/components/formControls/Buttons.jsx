@@ -11,6 +11,9 @@ import useAxios from "../../hooks/useAxios";
 import DropDown from "../global/DropDown";
 import { DataContext } from "../../provider/DataContext";
 
+// Utils
+import { successToast, warnToast } from "../../utils/toasts";
+
 const icons = {
   Add: "/assets/icons/add_FILL0_wght400_GRAD0_opsz24.svg",
   Edit: "/assets/icons/edit_FILL0_wght400_GRAD0_opsz24.svg",
@@ -59,7 +62,7 @@ export const Edit = () => {
 
   const showAlert = (quantity) => {
     const message = quantity > 1 ? "More than on entry selected." : "No entry selected.";
-    alert(message);
+    warnToast(message);
   };
 
   return (
@@ -76,8 +79,13 @@ export const Delete = () => {
   const { activeState } = useContext(DataContext);
 
   const handleClick = () => {
-    const url = `https://easyims.onrender.com/${activeState.title}`;
-    deleteData(url, selectedItems);
+    if (selectedItems.length < 1) {
+      warnToast("No item selected");
+    } else {
+      const url = `https://easyims.onrender.com/${activeState.title}`;
+      deleteData(url, selectedItems);
+      successToast("Successfully deleted");
+    }
   };
 
   return (

@@ -16,6 +16,7 @@ import { createPdf } from "../../utils/jsPdfServices.js";
 
 // Libraries
 import moment from "moment";
+import { successToast } from "../../utils/toasts.js";
 
 const Invoice = () => {
   const [currentStep, setCurrentStep] = useState("Add Customer");
@@ -61,6 +62,7 @@ const Invoice = () => {
 
     // Create pdf and navigate to /documents
     createPdf(savedInvoice[0], products);
+    successToast("Invoice successfully created");
     navigate("/documents");
   };
 
