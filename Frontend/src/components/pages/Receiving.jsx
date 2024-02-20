@@ -15,6 +15,7 @@ import { receiving } from "../../utils/tableFormatter";
 // Components
 import ControlPanel from "../controlPanel/ControlPanel";
 import InputField from "../formControls/InputField";
+import { successToast } from "../../utils/toasts.js";
 
 const Receiving = () => {
   const [receivingData, setReceivingData] = useState([]);
@@ -55,6 +56,7 @@ const Receiving = () => {
     });
 
     setReceivingData([]);
+    successToast("Receiving recorded");
   };
 
   return (

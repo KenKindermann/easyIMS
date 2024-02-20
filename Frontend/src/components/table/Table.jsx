@@ -11,6 +11,9 @@ import { DataContext } from "../../provider/DataContext.jsx";
 // Components
 import InputField from "../formControls/InputField.jsx";
 
+// Libraries
+import { ClipLoader } from "react-spinners";
+
 const Table = ({ data, setReceivingData }) => {
   const { selectedItems, setSelectedItems } = useContext(TableContext);
   const { activeState } = useContext(DataContext);
@@ -40,7 +43,7 @@ const Table = ({ data, setReceivingData }) => {
 
   return (
     <section className="table">
-      {activeState && data && (
+      {activeState && data.length > 0 ? (
         <table>
           <thead>
             <tr>
@@ -78,6 +81,10 @@ const Table = ({ data, setReceivingData }) => {
             ))}
           </tbody>
         </table>
+      ) : (
+        <div className="loader">
+          <ClipLoader color={"#123abc"} loading={true} size={150} />
+        </div>
       )}
     </section>
   );

@@ -14,6 +14,9 @@ import { DataContext } from "../../provider/DataContext";
 import { customerInputs } from "../../inputs/customerInputs";
 import { productInputs } from "../../inputs/productInputs";
 
+// Utils
+import { successToast } from "../../utils/toasts";
+
 const AddPopup = () => {
   const { activeState } = useContext(DataContext);
   const { showPopup } = useContext(PopupContext);
@@ -36,6 +39,7 @@ const AddPopup = () => {
       }
     }
     postData(url, data);
+    successToast("Successfully added");
   };
 
   const inputs = {
