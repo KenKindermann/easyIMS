@@ -81,11 +81,11 @@ const Table = ({ data, setReceivingData }) => {
             ))}
           </tbody>
         </table>
-      ) : (
+      ) : activeState.title !== "Receiving" ? (
         <div className="loader">
           <ClipLoader color={"#123abc"} loading={true} size={150} />
         </div>
-      )}
+      ) : null}
     </section>
   );
 };
